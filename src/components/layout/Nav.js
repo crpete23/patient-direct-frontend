@@ -12,10 +12,11 @@ const Nav = (props) => (
       </Menu.Item>
     </Menu.Menu>
     <Menu.Menu position="right">
-      <Menu.Item onClick={() => props.history.push('/signup')}>
+      <Menu.Item active={props.history.location.pathname === '/signup'} onClick={() => props.history.push('/signup')}>
         Sign Up
       </Menu.Item>
-      <Menu.Item onClick={() => props.history.push('/login')}>
+      <Menu.Item active={props.history.location.pathname === '/login'} onClick={() =>
+        props.history.push('/login')}>
         Login
       </Menu.Item>
     </Menu.Menu>
