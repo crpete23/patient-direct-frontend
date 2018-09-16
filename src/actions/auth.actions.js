@@ -43,10 +43,18 @@ export const userSignup = (newUser) => {
         body: JSON.stringify(newUser)
       })
       let isSignedUp = await response.json()
-      dispatch({
-        type: USER_SIGNUP_SUCCESS,
-        payload: isSignedUp
-      })
+      if(isSignedUp.token){
+        localStorage.setItem('token', isSignedUp.token)
+        dispatch({
+          type: USER_SIGNUP_SUCCESS,
+          payload: isSignedUp
+        })
+      } else {
+        dispatch({
+          type: USER_SIGNUP_FAILED,
+          payload: isSignedUp
+        })
+      }
     } catch(err) {
       dispatch({
         type: USER_SIGNUP_FAILED,

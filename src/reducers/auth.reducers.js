@@ -9,7 +9,6 @@ import {
 
 let initialState = {
   isLoading: false,
-  user: {},
   showLoginError: false,
   showSignupError: false
 };
@@ -19,13 +18,13 @@ export default(state = initialState, action) => {
     case USER_LOGIN_PENDING:
       return {...state, isLoading: true}
     case USER_LOGIN_SUCCESS:
-      return {...state, showLoginError: false, isLoading: false, user: action.payload}
+      return {...state, showLoginError: false, isLoading: false}
     case USER_LOGIN_FAILED:
       return {...state, isLoading: false, showLoginError: true}
     case USER_SIGNUP_PENDING:
       return {...state, isLoading: true}
     case USER_SIGNUP_SUCCESS:
-      return {...state, isLoading: false}
+      return {...state, showSignupError: false, isLoading: false}
     case USER_SIGNUP_FAILED:
       return {...state, isLoading: false, showSignupError: true}
     default:
