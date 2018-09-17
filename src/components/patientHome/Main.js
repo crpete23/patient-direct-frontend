@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Segment, Label, Divider } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import './styles/styles.css';
 
@@ -21,8 +21,12 @@ export class Main extends Component {
   render(){
     return (
       <Grid centered id='bodyGrid'>
-        <Grid.Column width={3}>
+        <Grid.Column stretched width={3}>
           <Form>
+            <Segment>
+              <Label as='a' size='massive' color='teal' ribbon='right'>
+                Patient Portal
+              </Label>
             <Form.Field>
               <label>First Name</label>
               <input name='first_name' type='text' placeholder='First Name' onChange={this.onChange} value={this.state.first_name} />
@@ -42,6 +46,7 @@ export class Main extends Component {
              </Grid.Column>
              <Grid.Column width={3}></Grid.Column>
             </Grid>
+          </Segment>
           </Form>
         </Grid.Column>
       </Grid>

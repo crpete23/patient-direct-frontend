@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Segment, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userLogin } from '../../actions/auth.actions'
@@ -45,8 +45,12 @@ export class Login extends Component {
   render(){
     return (
       <Grid centered style={styles.root}>
-        <Grid.Column width={3}>
+        <Grid.Column stretched width={3}>
           <Form onSubmit={this.loginAttempt}>
+            <Segment>
+              <Label as='a' size='massive' color='teal' ribbon='right'>
+                Physician Portal
+              </Label>
             <Form.Field>
               <label>Email</label>
               <input name='email' type="email" placeholder="Email" onChange={this.onChange} value={this.state.email} />
@@ -62,6 +66,7 @@ export class Login extends Component {
              </Grid.Column>
              <Grid.Column width={3}></Grid.Column>
             </Grid>
+          </Segment>
           </Form>
           {this.props.auth.showLoginError ? <Segment color='red' align='center'>
           Incorrect Username or Password

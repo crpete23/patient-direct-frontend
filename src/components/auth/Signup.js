@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form, Grid, Segment } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Grid, Segment, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userSignup } from '../../actions/auth.actions'
@@ -53,8 +53,12 @@ export class Signup extends Component {
   render(){
     return (
         <Grid centered style={styles.root}>
-          <Grid.Column width={3}>
+          <Grid.Column stretched width={3}>
             <Form onSubmit={this.signup}>
+              <Segment>
+                <Label as='a' size='massive' color='teal' ribbon='right'>
+                  Physician Portal
+                </Label>
               <Form.Field>
                 <label>First Name</label>
                 <input name="firstName" type="text" placeholder="First Name" onChange={this.onChange} value={this.state.firstName} />
@@ -85,6 +89,7 @@ export class Signup extends Component {
                </Grid.Column>
                <Grid.Column width={3}></Grid.Column>
               </Grid>
+            </Segment>
             </Form>
             {this.props.auth.showSignupError ? <Segment color='red' align='center'>
             Unable to Register User
