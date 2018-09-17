@@ -81,7 +81,7 @@ export const userVerify = () => {
         headers: {'Authorization':`Bearer ${token}`},
       })
       let isVerified = await response.json()
-      if(true){
+      if(isVerified.userId){
         dispatch({
           type: USER_VERIFIED,
           payload: isVerified

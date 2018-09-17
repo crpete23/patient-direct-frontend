@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form, Grid, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userLogin } from '../../actions/auth.actions'
