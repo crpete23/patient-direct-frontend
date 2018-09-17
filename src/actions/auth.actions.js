@@ -72,9 +72,7 @@ export const userSignup = (newUser) => {
 };
 
 export const userVerify = () => {
-  console.log('attempting to verify')
   const token = localStorage.getItem('token')
-  console.log(token)
   return async (dispatch) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})

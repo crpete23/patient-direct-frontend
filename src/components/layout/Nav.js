@@ -14,10 +14,11 @@ const Nav = (props) => {
   } catch (e) {
     userId = false
   }
+
   return (
     <Menu>
       <Menu.Menu>
-        <Menu.Item onClick={() => props.history.push('/')}>
+        <Menu.Item onClick={() => props.history.push( userId ? '/physicianHome' : '/' )}>
           PatientDirect <img src={logo} alt="logo" className="NavBar-logo"/>
         </Menu.Item>
       </Menu.Menu>
@@ -34,11 +35,11 @@ const Nav = (props) => {
       :
       <Menu.Menu position="right">
         <Menu.Item active={props.history.location.pathname === '/signup'} onClick={() => props.history.push('/signup')}>
-          Sign Up
+          Physician Sign Up
         </Menu.Item>
         <Menu.Item active={props.history.location.pathname === '/login'} onClick={() =>
           props.history.push('/login')}>
-          Login
+          Physician Login
         </Menu.Item>
       </Menu.Menu>
       }
