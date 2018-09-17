@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Checkbox, Form, Grid, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { userSignup } from '../../../actions/auth.actions'
+import { userSignup } from '../../actions/auth.actions'
 
 const styles = {
   root: {
@@ -27,7 +27,7 @@ export class Signup extends Component {
     })
   }
 
-  signup = (e) => {
+  signup = async (e) => {
     e.preventDefault()
     const newUser = {
       first_name : this.state.firstName,
@@ -35,20 +35,24 @@ export class Signup extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    this.props.userSignup(newUser)
-    this.setState({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      verify_password: ''
-    })
+    await this.props.userSignup(newUser)
+    if(!this.props.auth.showSignupError){
+      this.props.history.push('./physicianHome')
+    } else {
+      this.setState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        verify_password: ''
+      })
+    }
   }
 
   render(){
     return (
         <Grid centered style={styles.root}>
-          <Grid.Column width={6}>
+          <Grid.Column width={3}>
             <Form onSubmit={this.signup}>
               <Form.Field>
                 <label>First Name</label>
@@ -73,11 +77,17 @@ export class Signup extends Component {
               <Form.Field>
                 <Checkbox label="I agree to the Terms and Conditions" ></Checkbox>
               </Form.Field>
-              <Button type="submit">Sign Up</Button>
-              {this.props.auth.showSignupError ? <Segment >
-                Unable to Register User
-              </Segment> : null }
+              <Grid>
+                <Grid.Column width={3}></Grid.Column>
+                <Grid.Column stretched width={10}>
+                 <Button type="submit">Sign Up</Button>
+               </Grid.Column>
+               <Grid.Column width={3}></Grid.Column>
+              </Grid>
             </Form>
+            {this.props.auth.showSignupError ? <Segment color='red' align='center'>
+            Unable to Register User
+            </Segment> : null }
           </Grid.Column>
         </Grid>
       )

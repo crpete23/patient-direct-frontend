@@ -1,26 +1,61 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { userLogout } from '../../actions/auth.actions'
 import logo from '../../logo.svg';
 import './styles/styles.css';
 
-const Nav = (props) => (
-  <Menu>
-    <Menu.Menu>
-      <Menu.Item onClick={() => props.history.push('/')}>
-        PatientDirect <img src={logo} alt="logo" className="NavBar-logo"/>
-      </Menu.Item>
-    </Menu.Menu>
-    <Menu.Menu position="right">
-      <Menu.Item active={props.history.location.pathname === '/signup'} onClick={() => props.history.push('/signup')}>
-        Sign Up
-      </Menu.Item>
-      <Menu.Item active={props.history.location.pathname === '/login'} onClick={() =>
-        props.history.push('/login')}>
-        Login
-      </Menu.Item>
-    </Menu.Menu>
-  </Menu>
-);
+const Nav = (props) => {
+  let userId;
+  try {
+    userId = props.auth.user.response.id
+  } catch (e) {
+    userId = false
+  }
+  return (
+    <Menu>
+      <Menu.Menu>
+        <Menu.Item onClick={() => props.history.push('/')}>
+          PatientDirect <img src={logo} alt="logo" className="NavBar-logo"/>
+        </Menu.Item>
+      </Menu.Menu>
+      {
+        userId ?
+      <Menu.Menu position="right">
+        <Menu.Item onClick={ async() => {
+          await props.userLogout()
+          props.history.push('/login')
+        }}>
+          Sign Out
+        </Menu.Item>
+      </Menu.Menu>
+      :
+      <Menu.Menu position="right">
+        <Menu.Item active={props.history.location.pathname === '/signup'} onClick={() => props.history.push('/signup')}>
+          Sign Up
+        </Menu.Item>
+        <Menu.Item active={props.history.location.pathname === '/login'} onClick={() =>
+          props.history.push('/login')}>
+          Login
+        </Menu.Item>
+      </Menu.Menu>
+      }
+    </Menu>
+  );
+}
 
-export default withRouter(Nav);
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return{
+    userLogout: bindActionCreators(userLogout, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Nav));

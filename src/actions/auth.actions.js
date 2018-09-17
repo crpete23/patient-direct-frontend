@@ -1,11 +1,9 @@
 export const USER_LOGIN_PENDING = 'USER_LOGIN_PENDING'
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED'
-
 export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING'
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS'
 export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED'
-
 export const USER_LOGOUT = 'USER_LOGOUT'
 
 const BASE_URL = 'http://localhost:3200'
@@ -19,11 +17,19 @@ export const userLogin = ({email, password}) => {
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({email, password})
       })
-      let userObject = await response.json()
-      dispatch({
-        type: USER_LOGIN_SUCCESS,
-        payload: userObject
-      })
+      let isLoggedIn = await response.json()
+      if(isLoggedIn.token){
+        localStorage.setItem('token', isLoggedIn.token)
+        dispatch({
+          type: USER_LOGIN_SUCCESS,
+          payload: isLoggedIn
+        })
+      } else {
+        dispatch({
+          type: USER_LOGIN_FAILED,
+          payload: isLoggedIn
+        })
+      }
     } catch(err) {
       dispatch({
         type: USER_LOGIN_FAILED,
@@ -66,6 +72,7 @@ export const userSignup = (newUser) => {
 
 export const userLogout = () => {
   return async (dispatch) => {
+    localStorage.setItem('token', null)
     dispatch({type: USER_LOGOUT})
   }
 }

@@ -4,17 +4,22 @@ import { connect } from 'react-redux'
 
 
 const AuthenticatedRoute = (props) => {
-
+  let userId;
+  try {
+    userId = props.auth.user.response.id
+  } catch (e) {
+    userId = false
+  }
   return (
     <Route {...props} render={()=>{
-      return props.user.id ? props.render() : <Redirect to="/login" />
+      return userId ? props.render() : <Redirect to="/login" />
     }} />
   )
 }
 
 function mapStateToProps(state) {
   return {
-    user: state.auth.user
+    auth: state.auth
   }
 }
 
