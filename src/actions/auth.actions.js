@@ -1,3 +1,5 @@
+import authModel from '../models/auth'
+
 export const USER_LOGIN_PENDING = 'USER_LOGIN_PENDING'
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED'
@@ -9,26 +11,22 @@ export const USER_VERIFIED = 'USER_VERIFIED'
 
 const BASE_URL = 'http://localhost:3200'
 
-export const userLogin = ({email, password}) => {
+export const userLogin = (signInAttempt) => {
   return async (dispatch) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})
-      let response = await fetch(`${BASE_URL}/api/users/login`, {
-        method: "POST",
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({email, password})
-      })
-      let isLoggedIn = await response.json()
-      if(isLoggedIn.token){
-        localStorage.setItem('token', isLoggedIn.token)
+      let response = await authModel.login(signInAttempt)
+
+      if(response.data.token){
+        localStorage.setItem('token', response.data.token)
         dispatch({
           type: USER_LOGIN_SUCCESS,
-          payload: isLoggedIn
+          payload: response.data
         })
       } else {
         dispatch({
           type: USER_LOGIN_FAILED,
-          payload: isLoggedIn
+          payload: response.data
         })
       }
     } catch(err) {
@@ -44,22 +42,18 @@ export const userSignup = (newUser) => {
   return async (dispatch) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})
-      let response = await fetch(`${BASE_URL}/api/users/signup`, {
-        method: "POST",
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(newUser)
-      })
-      let isSignedUp = await response.json()
-      if(isSignedUp.token){
-        localStorage.setItem('token', isSignedUp.token)
+      let response = await authModel.signUp(newUser)
+
+      if(response.data.token){
+        localStorage.setItem('token', response.data.token)
         dispatch({
           type: USER_SIGNUP_SUCCESS,
-          payload: isSignedUp
+          payload: response.data
         })
       } else {
         dispatch({
           type: USER_SIGNUP_FAILED,
-          payload: isSignedUp
+          payload: response.data
         })
       }
     } catch(err) {
@@ -76,20 +70,17 @@ export const userVerify = () => {
   return async (dispatch) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})
-      let response = await fetch(`${BASE_URL}/api/users/verify`, {
-        method: "GET",
-        headers: {'Authorization':`Bearer ${token}`},
-      })
-      let isVerified = await response.json()
-      if(isVerified.userId){
+      let response = await authModel.verify(token)
+
+      if(response.data.userId){
         dispatch({
           type: USER_VERIFIED,
-          payload: isVerified
+          payload: response.data
         })
       } else {
         dispatch({
           type: USER_LOGOUT,
-          payload: isVerified
+          payload: response.data
         })
       }
     } catch(err) {
