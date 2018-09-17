@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { userVerify } from './actions/auth.actions'
 
 import { Nav, Main, Login, Signup, AuthenticatedRoute, PhysicianHome } from './components';
 
-export const App = (props) => {
+export class App extends Component {
 
+  componentDidMount(){
+    const token = localStorage.getItem('token')
+    if(token && !this.props.auth.user.userId){
+      this.props.userVerify()
+      .then(()=>{
+        if(this.props.auth.user.userId){
+            this.props.history.push('/physicianHome')
+        }
+      })
+    }
+  }
+
+  render(){
     return (
       <div>
         <Nav />
@@ -20,7 +35,7 @@ export const App = (props) => {
         </Switch>
       </div>
     );
-
+  }
 }
 
 function mapStateToProps(state) {
@@ -29,4 +44,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(App);
+function mapDispatchToProps(dispatch){
+  return{
+    userVerify: bindActionCreators(userVerify, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

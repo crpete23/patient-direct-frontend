@@ -5,6 +5,7 @@ export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING'
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS'
 export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED'
 export const USER_LOGOUT = 'USER_LOGOUT'
+export const USER_VERIFIED = 'USER_VERIFIED'
 
 const BASE_URL = 'http://localhost:3200'
 
@@ -64,6 +65,38 @@ export const userSignup = (newUser) => {
     } catch(err) {
       dispatch({
         type: USER_SIGNUP_FAILED,
+        payload: err
+      })
+    }
+  }
+};
+
+export const userVerify = () => {
+  console.log('attempting to verify')
+  const token = localStorage.getItem('token')
+  console.log(token)
+  return async (dispatch) => {
+    try {
+      dispatch({type: USER_LOGIN_PENDING})
+      let response = await fetch(`${BASE_URL}/api/users/verify`, {
+        method: "GET",
+        headers: {'Authorization':`Bearer ${token}`},
+      })
+      let isVerified = await response.json()
+      if(true){
+        dispatch({
+          type: USER_VERIFIED,
+          payload: isVerified
+        })
+      } else {
+        dispatch({
+          type: USER_LOGOUT,
+          payload: isVerified
+        })
+      }
+    } catch(err) {
+      dispatch({
+        type: USER_LOGOUT,
         payload: err
       })
     }

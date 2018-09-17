@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Grid, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userLogin } from '../../actions/auth.actions'
+import { withRouter } from 'react-router-dom';
 
 const styles = {
   root: {
@@ -83,4 +84,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

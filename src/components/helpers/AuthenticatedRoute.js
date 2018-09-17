@@ -1,12 +1,14 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { userVerify } from '../../actions/auth.actions'
 
 
 const AuthenticatedRoute = (props) => {
   let userId;
   try {
-    userId = props.auth.user.response.id
+    userId = props.auth.user.userId
   } catch (e) {
     userId = false
   }
@@ -23,4 +25,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(AuthenticatedRoute)
+function mapDispatchToProps(dispatch){
+  return{
+    userVerify: bindActionCreators(userVerify, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthenticatedRoute)

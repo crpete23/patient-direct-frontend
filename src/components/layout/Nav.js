@@ -10,7 +10,7 @@ import './styles/styles.css';
 const Nav = (props) => {
   let userId;
   try {
-    userId = props.auth.user.response.id
+    userId = props.auth.user.userId
   } catch (e) {
     userId = false
   }
@@ -58,4 +58,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Nav));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));
