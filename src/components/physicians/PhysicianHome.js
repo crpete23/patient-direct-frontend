@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { userLogin } from '../../actions/auth.actions'
 import { withRouter } from 'react-router-dom';
 import DateFormInline from './DateFormInline';
+import EncounterList from './EncounterList';
 import './styles/styles.css';
 var moment = require('moment')
 
@@ -30,6 +31,9 @@ export class PhysicianHome extends Component {
         </Grid.Column>
         <Grid.Column width={10}>
           <h1>Patient List</h1>
+          <Segment>
+            <EncounterList />
+          </Segment>
         </Grid.Column>
       </Grid>
     );
