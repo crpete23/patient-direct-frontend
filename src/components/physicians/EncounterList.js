@@ -17,7 +17,9 @@ class EncounterList extends Component {
   }
 
   render() {
-    let encountersList = this.props.encounters.encounters.map(encounter => <Encounter key={encounter.id} {...encounter} />)
+    let encountersList = this.props.encounters.encounters.sort(function(a,b){
+      return new Date('1970/01/01 ' + a.time) - new Date('1970/01/01 ' + b.time)})
+      .map(encounter => <Encounter key={encounter.id} {...encounter} />)
 
     return (
       <List celled>
