@@ -1,3 +1,3 @@
-import PhysicianHome from './physicianHome'
+import PhysicianHome from './PhysicianHome'
 
 export { PhysicianHome};
