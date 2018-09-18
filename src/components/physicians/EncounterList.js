@@ -1,20 +1,28 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import { Grid, List, Segment, Label } from 'semantic-ui-react'
 import {getAllEncountersByDate} from '../../actions/encounters'
+import Encounter from './Encounter'
 
 class EncounterList extends Component {
   componentDidMount() {
-    this.props.getAllEncountersByDate('2018/08/30')
+    this.props.getAllEncountersByDate(this.props.date)
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(this.props.date !== nextProps.date){
+      this.props.getAllEncountersByDate(nextProps.date)
+    }
   }
 
   render() {
-    console.log(this.props.encounters)
+    let encountersList = this.props.encounters.encounters.map(encounter => <Encounter key={encounter.id} {...encounter} />)
 
     return (
-      <h1>
-        theList
-      </h1>
+      <List celled>
+        {encountersList}
+      </List>
     )
   }
 }
