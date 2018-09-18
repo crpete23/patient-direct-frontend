@@ -1,10 +1,15 @@
 import React from 'react'
 import {List} from 'semantic-ui-react'
+import { getEncounterById } from '../../actions/encounters'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-const Encounter = ({dob, first_name, last_name, sex, time}) => {
+
+const Encounter = ({id, date, dob, first_name, last_name, sex, time, getEncounterById }) => {
   const dateOfBirth = `${dob.slice(5)}/${dob.slice(0,4)}`
+
   return (
-    <List.Item>
+    <List.Item onClick={()=>getEncounterById(id, date)}>
      <List.Content>
       <List.Header>{time}</List.Header>
       {`Patient: ${first_name} ${last_name}, Sex: ${sex}, Date of Birth: ${dateOfBirth}`}
@@ -13,5 +18,10 @@ const Encounter = ({dob, first_name, last_name, sex, time}) => {
   )
 }
 
+function mapDispatchToProps(dispatch){
+  return{
+    getEncounterById: bindActionCreators(getEncounterById, dispatch)
+  }
+}
 
-export default Encounter
+export default connect(null, mapDispatchToProps)(Encounter)
