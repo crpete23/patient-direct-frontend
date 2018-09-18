@@ -9,8 +9,6 @@ export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED'
 export const USER_LOGOUT = 'USER_LOGOUT'
 export const USER_VERIFIED = 'USER_VERIFIED'
 
-const BASE_URL = 'http://localhost:3200'
-
 export const userLogin = (signInAttempt) => {
   return async (dispatch) => {
     try {
