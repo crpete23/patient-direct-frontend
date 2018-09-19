@@ -1,4 +1,33 @@
 import patientsModel from '../models/patients'
 
-export const GET_ALL_PATIENTS = 'GET_ALL_PATIENTS'
-export const FILTER_PATIENTS = 'FILTER_PATIENTS'
+var moment = require('moment')
+
+export const CHECKED_IN = 'CHECKED IN'
+export const FAILED_CHECK_IN = 'FAILED_CHECK_IN'
+
+export const checkIn = (first_name, last_name, dob) => {
+  const dobNumber = dob.replace(/\-/g, '')
+  const today = moment().format(`YYYYMMDD`)
+  //const today = '20180830'
+  return async(dispatch) => {
+    try {
+      let response = await patientsModel.checkIn(first_name, last_name, dobNumber, today)
+      if(response.data.encounter){
+        dispatch({
+          type: CHECKED_IN,
+          payload: response.data.encounter
+        })
+      } else {
+        dispatch({
+          type: FAILED_CHECK_IN,
+          payload: {}
+        })
+      }
+    } catch (e){
+      dispatch({
+        type: FAILED_CHECK_IN,
+        payload: {}
+      })
+    }
+  }
+}

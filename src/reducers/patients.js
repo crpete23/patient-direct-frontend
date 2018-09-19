@@ -1,16 +1,19 @@
 import {
-  GET_ALL_PATIENTS,
-  FILTER_PATIENTS
+  CHECKED_IN,
+  FAILED_CHECK_IN
 } from '../actions/patients'
 
-const initialPatients = []
+const initialState = {
+  checkInEncounter: {},
+  checkInError: false
+}
 
-function patients(state=initialPatients, {type, payload}){
+function patients(state=initialState, {type, payload}){
   switch(type){
-    case GET_ALL_PATIENTS:
-      return payload
-    case FILTER_PATIENTS:
-      return payload
+    case CHECKED_IN:
+      return { checkInEncounter: payload, checkInError: false }
+    case FAILED_CHECK_IN:
+      return { checkInEncounter: {}, checkInError: true }
     default: return state
   }
 }

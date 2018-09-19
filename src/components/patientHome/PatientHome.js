@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Segment, Label, Divider } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import './styles/styles.css';
+import { bindActionCreators } from 'redux'
+import { checkIn } from '../../actions/patients'
 
 export class PatientHome extends Component {
   state = {
     first_name: '',
     last_name: '',
     dob: ''
+  }
+
+  checkInAttempt = async (e) => {
+    e.preventDefault()
+    const response = await this.props.checkIn(this.state.first_name, this.state.last_name, this.state.dob)
+
+    const patientsInfo = this.props.patients
+    if(!patientsInfo.checkInError){
+      this.props.history.push(`./patients/${patientsInfo.checkInEncounter.patient_id}/encounters/${patientsInfo.checkInEncounter.id}`)
+    }
   }
 
   onChange = (e) => {
@@ -22,7 +34,7 @@ export class PatientHome extends Component {
     return (
       <Grid centered id='bodyGrid'>
         <Grid.Column stretched width={3}>
-          <Form>
+          <Form onSubmit={this.checkInAttempt}>
             <Segment>
               <Label as='a' size='massive' color='teal' ribbon='right'>
                 Patient Portal
@@ -48,6 +60,9 @@ export class PatientHome extends Component {
             </Grid>
           </Segment>
           </Form>
+          {this.props.patients.checkInError ? <Segment color='red' align='center'>
+          Either user information was input incorrectly or we do not have a scheduled appointment for you today. We apologize for the confusion. Please speak to the front desk.
+        </Segment> : null }
         </Grid.Column>
       </Grid>
     );
@@ -56,8 +71,14 @@ export class PatientHome extends Component {
 
 function mapStateToProps(state){
   return {
-    auth: state.auth
+    patients: state.patients
   }
 }
 
-export default connect(mapStateToProps, null)(PatientHome);
+function mapDispatchToProps(dispatch){
+  return{
+    checkIn: bindActionCreators(checkIn, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PatientHome);

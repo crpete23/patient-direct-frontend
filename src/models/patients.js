@@ -1,25 +1,10 @@
 import axios from 'axios'
 const BASE_URL = 'http://localhost:3200/api/patients'
 
-function getAllPatients(){
-  return axios.get(`${BASE_URL}`)
-}
-
-function getPatient(id){
-  return axios.get(`${BASE_URL}/${id}`)
-}
-
-function createPatient(post){
-  return axios.post(`${BASE_URL}`, post)
-}
-
-function deletePatient(id){
-  return axios.delete(`${BASE_URL}/${id}`)
+function checkIn(first_name, last_name, dob, today){
+  return axios.patch(`${BASE_URL}/${first_name}/${last_name}/${dob}/${today}`)
 }
 
 export default {
-  getAllPatients,
-  getPatient,
-  createPatient,
-  deletePatient
+  checkIn
 }
