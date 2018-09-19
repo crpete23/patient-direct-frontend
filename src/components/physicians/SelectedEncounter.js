@@ -8,14 +8,14 @@ const SelectedEncounter = ({id, date, dob, first_name, last_name, sex, time, hx 
   const dateOfBirth = `${dob.slice(5)}/${dob.slice(0,4)}`
 
   return (
-    <Grid>
-      <Grid.Row>
+    <Grid padded>
+      <Grid.Row centered>
         <h1>{`${first_name} ${last_name}`}</h1>
       </Grid.Row>
-      <Grid.Row>
+      <Grid.Row centered>
         <h3>{`Appointment Time: ${time}`}</h3>
       </Grid.Row>
-      <Grid.Row>
+      <Grid.Row centered>
         <History {...hx} />
       </Grid.Row>
     </Grid>

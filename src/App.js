@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userVerify } from './actions/auth.actions'
 
-import { Nav, Main, Login, Signup, AuthenticatedRoute, PhysicianHome } from './components';
+import { Nav, PatientHome, Login, Signup, AuthenticatedRoute, PhysicianHome } from './components';
 
 export class App extends Component {
 
@@ -28,7 +28,7 @@ export class App extends Component {
           <AuthenticatedRoute exact path="/physicianHome" render={()=>{
             return <PhysicianHome />
           }} />
-          <Route exact path="/" component={ Main } />
+          <Route exact path="/" component={ PatientHome } />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Redirect to="/" />

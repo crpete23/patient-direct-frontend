@@ -40,7 +40,11 @@ export class PhysicianHome extends Component {
         <Grid.Row centered>
           <Grid.Column width={8}>
             {
-              (this.props.encounters.selected_encounter.id ? <SelectedEncounter {...this.props.encounters.selected_encounter} /> : null)
+              (this.props.encounters.selected_encounter.id ?
+                <Segment>
+                  <SelectedEncounter {...this.props.encounters.selected_encounter} />
+                </Segment>
+                : null)
             }
           </Grid.Column>
         </Grid.Row>

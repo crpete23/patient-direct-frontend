@@ -1,35 +1,30 @@
 import React from 'react'
 import {Grid, List} from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import Hpi from './Hpi'
+import Ros from './Ros'
 
 const History = ({hpi, ros}) => {
 
   return (
-    <List as='ol'>
-        <List.Item as='li' value='*'>
-          Signing Up
-        </List.Item>
-        <List.Item as='li' value='*'>
-          User Benefits
-        </List.Item>
-        <List.Item as='li' value='*'>
-          User Types
-          <List.Item as='ol'>
-            <List.Item as='li' value='-'>
-              Admin
-            </List.Item>
-            <List.Item as='li' value='-'>
-              Power User
-            </List.Item>
-            <List.Item as='li' value='-'>
-              Regular User
-            </List.Item>
-          </List.Item>
-        </List.Item>
-        <List.Item as='li' value='*'>
-          Deleting Your Account
-        </List.Item>
-      </List>
+    <Grid columns={2}>
+      <Grid.Column>
+        <Grid.Row centered>
+          <h4>History of Present Illness: </h4>
+        </Grid.Row>
+        <Grid.Row centered>
+          <Hpi {...hpi} />
+        </Grid.Row>
+      </Grid.Column>
+      <Grid.Column>
+        <Grid.Row centered>
+          <h4>Review of Systems: </h4>
+        </Grid.Row>
+        <Grid.Row centered>
+          <Ros {...ros} />
+        </Grid.Row>
+      </Grid.Column>
+    </Grid>
 )
 }
 

@@ -1,3 +1,3 @@
-import Main from './Main'
+import PatientHome from './PatientHome'
 
-export { Main };
+export { PatientHome };

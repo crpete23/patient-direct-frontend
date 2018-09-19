@@ -3,7 +3,7 @@ import { Button, Form, Grid, Segment, Label, Divider } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import './styles/styles.css';
 
-export class Main extends Component {
+export class PatientHome extends Component {
   state = {
     first_name: '',
     last_name: '',
@@ -60,4 +60,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapStateToProps, null)(PatientHome);
