@@ -40,7 +40,6 @@ export const getEncounterById = (encounter_id, date) => {
   return async(dispatch) => {
     try {
       let response = await encounterModel.getById(encounter_id, dateNumber, token)
-      console.log(response)
       dispatch({
         type: SELECTED_ENCOUNTER,
         payload: response.data.encounter

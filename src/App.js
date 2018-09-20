@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userVerify } from './actions/auth.actions'
 
-import { Nav, PatientHome, Login, Signup, AuthenticatedRoute, PhysicianHome } from './components';
+import { Nav, PatientHome, Login, Signup, AuthenticatedRoute, CheckedInRoute, PhysicianHome, ChiefComplaint } from './components';
 
 export class App extends Component {
 
@@ -31,6 +31,9 @@ export class App extends Component {
           <Route exact path="/" component={ PatientHome } />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <CheckedInRoute exact path="/patients/:patient_id/encounters/:encounter_id" render={()=>{
+            return <ChiefComplaint />
+          }} />
           <Redirect to="/" />
         </Switch>
       </div>
