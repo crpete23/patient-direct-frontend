@@ -31,8 +31,8 @@ export class Signup extends Component {
   signup = async (e) => {
     e.preventDefault()
     const newUser = {
-      first_name : this.state.firstName,
-      last_name : this.state.lastName,
+      doc_first_name : this.state.firstName,
+      doc_last_name : this.state.lastName,
       email: this.state.email,
       password: this.state.password
     }

@@ -13,9 +13,10 @@ export const checkIn = (first_name, last_name, dob) => {
     try {
       let response = await patientsModel.checkIn(first_name, last_name, dobNumber, today)
       if(response.data.encounter){
+        let fullEncounterInfoResp = await patientsModel.getFullEncoutnerInfo(response.data.encounter.patient_id, response.data.encounter.id)
         dispatch({
           type: CHECKED_IN,
-          payload: response.data.encounter
+          payload: fullEncounterInfoResp.data.encounter
         })
       } else {
         dispatch({
