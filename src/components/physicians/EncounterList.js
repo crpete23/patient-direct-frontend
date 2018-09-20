@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import { Grid, List, Segment, Label } from 'semantic-ui-react'
+import { List } from 'semantic-ui-react'
 import {getAllEncountersByDate} from '../../actions/encounters'
 import Encounter from './Encounter'
 

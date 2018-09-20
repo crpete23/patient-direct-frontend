@@ -1,11 +1,9 @@
 import React from 'react'
-import {Grid, List} from 'semantic-ui-react'
-import { connect } from 'react-redux'
+import {Grid } from 'semantic-ui-react'
 import History from './History'
 
 
 const SelectedEncounter = ({id, date, dob, first_name, last_name, sex, time, hx }) => {
-  const dateOfBirth = `${dob.slice(5)}/${dob.slice(0,4)}`
 
   return (
     <Grid padded>

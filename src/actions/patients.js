@@ -6,7 +6,7 @@ export const CHECKED_IN = 'CHECKED IN'
 export const FAILED_CHECK_IN = 'FAILED_CHECK_IN'
 
 export const checkIn = (first_name, last_name, dob) => {
-  const dobNumber = dob.replace(/\-/g, '')
+  const dobNumber = dob.replace(/-/g, '')
   const today = moment().format(`YYYYMMDD`)
   //const today = '20180830'
   return async(dispatch) => {

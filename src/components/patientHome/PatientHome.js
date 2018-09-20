@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Segment, Label, Divider } from 'semantic-ui-react'
+import { Button, Form, Grid, Segment, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import './styles/styles.css';
 import { bindActionCreators } from 'redux'
@@ -14,7 +14,7 @@ export class PatientHome extends Component {
 
   checkInAttempt = async (e) => {
     e.preventDefault()
-    const response = await this.props.checkIn(this.state.first_name, this.state.last_name, this.state.dob)
+    await this.props.checkIn(this.state.first_name, this.state.last_name, this.state.dob)
 
     const patientsInfo = this.props.patients
     if(!patientsInfo.checkInError){

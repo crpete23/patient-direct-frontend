@@ -1,6 +1,5 @@
 import React from 'react'
-import {Grid, List} from 'semantic-ui-react'
-import { connect } from 'react-redux'
+import {List} from 'semantic-ui-react'
 
 const Hpi = (hpi) => {
   const keys = Object.keys(hpi);
