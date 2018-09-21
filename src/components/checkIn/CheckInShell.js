@@ -9,6 +9,7 @@ import {
 } from 'semantic-ui-react'
 
 import ChiefComplaint from './ChiefComplaint'
+import Hpi from './Hpi'
 
 const submitted = () => {
     this.setState({
@@ -30,7 +31,7 @@ export class CheckInShell extends Component {
           })
         }
       }/>,
-      '2': <h1>page2</h1>,
+      '2': <Hpi />
     },
     holdNext: true
   }
