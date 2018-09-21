@@ -15,15 +15,30 @@ export class CCdropdown extends Component {
   }
 
   renderLabel = (label) => {
+    const cc = this.state.chief_complaints;
+    let number = 1;
+    for(let i=0; i<cc.length; i++){
+      if(cc[i]===label.key){
+        break;
+      }
+      number++;
+    }
       return ({
       color: 'blue',
-      content: `${label.text}`
+      content: `${number}) ${label.text}`
     })
+  }
+
+  handleChange = (e, { value }) => {
+    this.props.updateCC(value)
+    this.setState({ chief_complaints: value }
+    )
   }
 
   render(){
     return (
-      <Dropdown placeholder='Reason For Visit' fluid multiple selection options={options} renderLabel={this.renderLabel} />
+      <Dropdown placeholder='Reason For Visit' fluid multiple selection options={options}
+        onChange = {this.handleChange} renderLabel={this.renderLabel} />
     )
   }
 

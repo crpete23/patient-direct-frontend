@@ -49,7 +49,8 @@ const Nav = (props) => {
 
 function mapStateToProps(state) {
   return {
-    auth: state.auth
+    auth: state.auth,
+    encounter: state.patients.checkInEncounter
   }
 }
 
