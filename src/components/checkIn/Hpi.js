@@ -2,54 +2,63 @@ import React, { Component } from 'react'
 import { Grid, Form } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
-const options = [
-  { key: 'm', text: 'Male', value: 'male' },
-  { key: 'f', text: 'Female', value: 'female' },
-]
-
 class Hpi extends Component {
-  state = {}
+  state = {
+    'quality' : ''
+  }
 
-  handleChange = (e, { value }) => this.setState({ value })
+  handleChange = (e, { name, value }) => {
+    console.log(name, value)
+    this.setState({ [name] : value })
+    }
 
   render() {
-    const { value } = this.state
-    const encounter = this.props.encounter
+    const cc = this.props.encounter.hx.hpi.cc[0]
     return (
       <Grid columns={3}>
         <Grid.Column width={2}>
         </Grid.Column>
         <Grid.Column width={12}>
-          <h2>{ `Regarding your concern of: ${encounter.hx.hpi.cc[0]}` }</h2>
           <Form>
-            <Form.Group widths='equal'>
-              <Form.Input fluid label='First name' placeholder='First name' />
-              <Form.Input fluid label='Last name' placeholder='Last name' />
-              <Form.Select fluid label='Gender' options={options} placeholder='Gender' />
-            </Form.Group>
             <Form.Group inline>
-              <label>Size</label>
+              <label>{`What Quality best describes your ${cc}?`}</label>
               <Form.Radio
-                label='Small'
-                value='sm'
-                checked={value === 'sm'}
+                label='Sharp'
+                name='quality'
+                value='sharp'
+                checked={this.state.quality === 'sharp'}
                 onChange={this.handleChange}
               />
               <Form.Radio
-                label='Medium'
-                value='md'
-                checked={value === 'md'}
+                label='Dull'
+                name='quality'
+                value='dull'
+                checked={this.state.quality === 'dull'}
                 onChange={this.handleChange}
               />
               <Form.Radio
-                label='Large'
-                value='lg'
-                checked={value === 'lg'}
+                label='Pressure'
+                name='quality'
+                value='pressure'
+                checked={this.state.quality === 'pressure'}
+                onChange={this.handleChange}
+              />
+              <Form.Radio
+                label='Ache'
+                name='quality'
+                value='ache'
+                checked={this.state.quality === 'ache'}
+                onChange={this.handleChange}
+              />
+              <Form.Radio
+                label='Other (describe below)'
+                name='quality'
+                value='other'
+                checked={!['sharp', 'dull', 'pressure', 'ache'].includes(this.state.quality)}
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Form.TextArea label='About' placeholder='Tell us more about you...'   />
-            <Form.Checkbox label='I agree to the Terms and Conditions' />
+            <Form.TextArea name='quality' disabled={['sharp', 'dull', 'pressure', 'ache'].includes(this.state.quality)} placeholder={`Please Describe the Quality of your ${cc}`} onChange={this.handleChange} />
             <Form.Button>Submit</Form.Button>
           </Form>
         </Grid.Column>
