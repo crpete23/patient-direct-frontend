@@ -63,7 +63,7 @@ export class ChiefComplaint extends Component {
                 <Grid.Row>
                   <Grid.Column width={6}></Grid.Column>
                   <Grid.Column stretched width={4}>
-                    <Button type="submit">Submit</Button>
+                    <Button disabled={!this.state.chief_complaints.length} type="submit">Submit</Button>
                   </Grid.Column>
                   <Grid.Column width={6}></Grid.Column>
                 </Grid.Row>
