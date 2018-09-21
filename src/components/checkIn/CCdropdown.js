@@ -11,7 +11,7 @@ const options = [
 
 export class CCdropdown extends Component {
   state = {
-    chief_complaints: []
+    chief_complaints: this.props.value
   }
 
   renderLabel = (label) => {
@@ -38,7 +38,7 @@ export class CCdropdown extends Component {
   render(){
     return (
       <Dropdown placeholder='Reason For Visit' fluid multiple selection options={options}
-        onChange = {this.handleChange} renderLabel={this.renderLabel} />
+        onChange = {this.handleChange} renderLabel={this.renderLabel} value={this.props.value} />
     )
   }
 

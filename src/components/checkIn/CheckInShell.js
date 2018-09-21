@@ -10,14 +10,36 @@ import {
 
 import ChiefComplaint from './ChiefComplaint'
 
+const submitted = () => {
+    this.setState({
+      ...this.state,
+      holdNext: false
+    })
+}
+
 export class CheckInShell extends Component {
   state = {
     pageNum: 1,
     page: {
-      1: <ChiefComplaint />,
-      2: <h1>page2</h1>,
+      '1': <ChiefComplaint submitted={
+        () =>
+        {
+          this.setState({
+            ...this.state,
+            holdNext: false
+          })
+        }
+      }/>,
+      '2': <h1>page2</h1>,
     },
     holdNext: true
+  }
+
+  submitted = () => {
+    this.setState({
+      ...this.state,
+      holdNext: false
+    })
   }
 
   pageBack = (e) =>{
@@ -32,7 +54,8 @@ export class CheckInShell extends Component {
     e.preventDefault()
     this.setState({
       ...this.state,
-      pageNum: this.state.pageNum+1
+      pageNum: this.state.pageNum+1,
+      holdNext: true
     })
   }
 

@@ -17,7 +17,7 @@ import { updateHx } from '../../actions/patients'
 
 export class ChiefComplaint extends Component {
   state = {
-    chief_complaints: []
+    chief_complaints: this.props.encounter.hx.hpi.cc  || []
   }
 
   updateCC = (cc) => {
@@ -39,6 +39,7 @@ export class ChiefComplaint extends Component {
       }
     }
     await this.props.updateHx(encounter.patient_id, encounter.id, hx)
+    this.props.submitted()
   }
 
   render() {
@@ -56,7 +57,7 @@ export class ChiefComplaint extends Component {
                 </Grid.Row>
                 <Grid.Row centered>
                   <Grid.Column width={12}>
-                    <CCdropdown updateCC={this.updateCC}/>
+                    <CCdropdown updateCC={this.updateCC} value={this.state.chief_complaints} />
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
