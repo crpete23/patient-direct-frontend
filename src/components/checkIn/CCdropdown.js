@@ -15,9 +15,10 @@ export class CCdropdown extends Component {
   }
 
   renderLabel = (label) => {
-    const cc = this.state.chief_complaints;
+    const cc = this.props.value;
     let number = 1;
     for(let i=0; i<cc.length; i++){
+      console.log(cc[i],label.key)
       if(cc[i]===label.key){
         break;
       }

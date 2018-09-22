@@ -17,7 +17,18 @@ import { updateHx } from '../../actions/patients'
 
 export class ChiefComplaint extends Component {
   state = {
-    chief_complaints: this.props.encounter.hx.hpi.cc  || []
+    chief_complaints: []
+  }
+
+  componentDidMount(){
+    try {
+      const initialCC = this.props.encounter.hx.hpi.cc
+      this.setState({
+        chief_complaints: initialCC
+      }) 
+    } catch (e) {
+
+    }
   }
 
   updateCC = (cc) => {
