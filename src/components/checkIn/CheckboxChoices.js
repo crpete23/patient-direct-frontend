@@ -31,7 +31,7 @@ class CheckboxChoices extends Component {
           name={this.props.element}
           value={choice}
           onChange={this.handleChange}
-          style={{"padding-left": '20px'}}
+          style={{"paddingLeft": '20px'}}
         />
       )
     })

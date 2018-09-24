@@ -11,13 +11,6 @@ import {
 import ChiefComplaint from './ChiefComplaint'
 import Hpi from './Hpi'
 
-const submitted = () => {
-    this.setState({
-      ...this.state,
-      holdNext: false
-    })
-}
-
 export class CheckInShell extends Component {
   state = {
     pageNum: 1,
@@ -31,7 +24,15 @@ export class CheckInShell extends Component {
           })
         }
       }/>,
-      '2': <Hpi />
+      '2': <Hpi submitted={
+        () =>
+        {
+          this.setState({
+            ...this.state,
+            holdNext: false
+          })
+        }
+      }/>
     },
     holdNext: true
   }

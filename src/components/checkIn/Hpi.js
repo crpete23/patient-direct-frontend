@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { Grid, Form, Segment } from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 
+import { updateHx } from '../../actions/patients'
 import RadioChoices from './RadioChoices'
 import CheckboxChoices from './CheckboxChoices'
 import WriteInAnswer from './WriteInAnswer'
 
 class Hpi extends Component {
   state = {
+
   }
 
   handleChange = (e, { name, value }) => {
@@ -45,6 +48,26 @@ class Hpi extends Component {
       }
     }
 
+    submitHPI = async (e) => {
+      e.preventDefault()
+      const encounter = this.props.encounter
+      let hpi = null;
+      if(encounter.hx.hpi){
+        hpi = encounter.hx.hpi
+      }
+      let hx = {
+        ...encounter.hx,
+        hpi: {
+          ...hpi,
+          ...this.state
+        }
+      }
+
+
+      await this.props.updateHx(encounter.patient_id, encounter.id, hx)
+      this.props.submitted()
+    }
+
   render() {
     const cc = this.props.encounter.hx.hpi.cc[0]
 
@@ -53,7 +76,7 @@ class Hpi extends Component {
         <Grid.Column width={2}>
         </Grid.Column>
         <Grid.Column width={12}>
-          <Form>
+          <Form onSubmit={this.submitHPI}>
             <RadioChoices choices={['sharp', 'dull', 'pressure', 'ache']} element={'quality'} cc={cc} passChange={this.passChange} label={`What quality best describes your ${cc}?`} otherChoice={true} />
             <RadioChoices choices={['constant', 'intermittent', 'waxing and waning']} element={'timing'} cc={cc} passChange={this.passChange} label={`What is the frequency/ timing of your ${cc}?`} otherChoice={true} />
             <RadioChoices choices={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']} element={'severity'} cc={cc} passChange={this.passChange} label={`What is the severity of your ${cc}?`} otherChoice={false} />
@@ -77,4 +100,10 @@ function mapStateToProps(state) {
   return {encounter: state.patients.checkInEncounter}
 }
 
-export default connect(mapStateToProps, null)(Hpi)
+function mapDispatchToProps(dispatch){
+  return{
+    updateHx: bindActionCreators(updateHx, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Hpi)

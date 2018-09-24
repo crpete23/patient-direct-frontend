@@ -25,9 +25,8 @@ export class ChiefComplaint extends Component {
       const initialCC = this.props.encounter.hx.hpi.cc
       this.setState({
         chief_complaints: initialCC
-      }) 
+      })
     } catch (e) {
-
     }
   }
 
@@ -39,8 +38,8 @@ export class ChiefComplaint extends Component {
     e.preventDefault()
     const encounter = this.props.encounter
     let hpi = null;
-    if(encounter.hpi){
-      let hpi = encounter.hpi
+    if(encounter.hx.hpi){
+      hpi = encounter.hx.hpi
     }
     let hx = {
       ...encounter.hx,
@@ -54,6 +53,13 @@ export class ChiefComplaint extends Component {
   }
 
   render() {
+    let noCC;
+    try{
+      noCC = !this.state.chief_complaints.length
+    } catch(e){
+      noCC = true
+    }
+
     return (<Grid centered>
       <Grid.Column width={10}>
         <Grid.Row>
@@ -74,7 +80,7 @@ export class ChiefComplaint extends Component {
                 <Grid.Row>
                   <Grid.Column width={6}></Grid.Column>
                   <Grid.Column stretched width={4}>
-                    <Button disabled={!this.state.chief_complaints.length} type="submit">Submit</Button>
+                    <Button disabled={noCC} type="submit">Submit</Button>
                   </Grid.Column>
                   <Grid.Column width={6}></Grid.Column>
                 </Grid.Row>

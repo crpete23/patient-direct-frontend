@@ -18,7 +18,6 @@ export class CCdropdown extends Component {
     const cc = this.props.value;
     let number = 1;
     for(let i=0; i<cc.length; i++){
-      console.log(cc[i],label.key)
       if(cc[i]===label.key){
         break;
       }
