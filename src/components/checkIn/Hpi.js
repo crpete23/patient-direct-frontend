@@ -13,13 +13,6 @@ class Hpi extends Component {
 
   }
 
-  handleChange = (e, { name, value }) => {
-    this.setState({
-      ...this.state,
-      [name] : value
-    })
-    }
-
     passChange = (updateName, updateValue) => {
       this.setState({
         ...this.state,

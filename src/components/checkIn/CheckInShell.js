@@ -10,6 +10,7 @@ import {
 
 import ChiefComplaint from './ChiefComplaint'
 import Hpi from './Hpi'
+import ReviewOfSystems from './ReviewOfSystems'
 
 export class CheckInShell extends Component {
   state = {
@@ -32,7 +33,16 @@ export class CheckInShell extends Component {
             holdNext: false
           })
         }
-      }/>
+      }/>,
+      '3': <ReviewOfSystems submitted={
+        () =>
+        {
+          this.setState({
+            ...this.state,
+            holdNext: false
+          })
+        }
+      }/>,
     },
     holdNext: true
   }
