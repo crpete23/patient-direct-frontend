@@ -11,6 +11,7 @@ import {
 import ChiefComplaint from './ChiefComplaint'
 import Hpi from './Hpi'
 import ReviewOfSystems from './ReviewOfSystems'
+import Complete from './Complete'
 
 export class CheckInShell extends Component {
   state = {
@@ -43,6 +44,7 @@ export class CheckInShell extends Component {
           })
         }
       }/>,
+      '4': <Complete />
     },
     holdNext: true
   }

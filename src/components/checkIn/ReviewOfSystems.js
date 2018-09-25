@@ -74,7 +74,7 @@ class ReviewOfSystems extends Component {
       }
       let hx = {
         ...encounter.hx,
-        hpi: {
+        ros: {
           ...ros,
           ...this.state
         }
