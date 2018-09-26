@@ -16,8 +16,9 @@ class Hpi extends Component {
 
   async componentDidMount(){
     const resp = await tempModels.getTemplate(this.props.encounter.doctor_id, this.props.encounter.hx.hpi.cc[0])
-    let template = resp.data.template
+    const template = resp.data.template
     this.setState({
+      ...this.state,
       template
     })
   }
@@ -65,6 +66,7 @@ class Hpi extends Component {
         }
       }
 
+      delete hx.hpi.template
 
       await this.props.updateHx(encounter.patient_id, encounter.id, hx)
       this.props.submitted()
