@@ -4,65 +4,22 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import { updateHx } from '../../actions/patients'
+import tempModels from '../../models/templates.js'
 import RadioChoices from './RadioChoices'
 import CheckboxChoices from './CheckboxChoices'
 import WriteInAnswer from './WriteInAnswer'
 
-const hpiInfo = {
-  quality: {
-    type: 'radio',
-    choices: ['sharp', 'dull', 'pressure', 'ache'],
-    label: `What quality best describes your chest pain?`,
-    other: true
-  },
-  timing: {
-    type: 'radio',
-    choices: ['constant', 'intermittent', 'waxing and waning'],
-    label: `What is the frequency/ timing of your chest pain?`,
-    other: true
-  },
-  severity: {
-    type: 'radio',
-    choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-    label: `What is the severity of your chest pain?`,
-    other: false
-  },
-  duration: {
-    type: 'radio',
-    choices: ['less than a minute', 'several minutes', 'one hour', 'several hours', 'one day', 'several days', 'several weeks', 'several months'],
-    label: 'When symptoms are present, how long do they usually last?',
-    other: true
-  },
-  location: {
-    type: 'radio',
-    choices: ['central chest', 'left chest', 'right chest', 'left shoulder/arm', 'right shoulder/arm'],
-    label: `What is the location of your chest pain?`,
-    other: true
-  },
-  alleviatingFactors: {
-    type: 'check',
-    choices: ['nitroglycerin', 'stretching or massaging the area', 'exertion', 'pain medications'],
-    label: 'What, if anything, makes your symptoms better? (select all that apply)'
-  },
-  exacerbatingFactors: {
-    type: 'check',
-    choices: ['movement', 'exertion', 'deep breathing', 'eating/drinking'],
-    label: 'What, if anything, induces or makes your symptoms worse? (select all that apply)'
-  },
-  associatedSx: {
-    type: 'check',
-    choices: ['shortness of breath', 'diaphoresis (sweating)', 'nausea', 'vomitting', 'fatigue', 'dizziness/light headedness'],
-    label: `Have you experienced any other symptoms that you feel are related to your chest pain? (select all that apply)`
-  },
-  context: {
-    type: 'write',
-    label: `Briefly describe the context of your chest pain`
-  }
-}
-
 class Hpi extends Component {
   state = {
+    template: {}
+  }
 
+  async componentDidMount(){
+    const resp = await tempModels.getTemplate(this.props.encounter.doctor_id, this.props.encounter.hx.hpi.cc[0])
+    let template = resp.data.template
+    this.setState({
+      template
+    })
   }
 
     passChange = (updateName, updateValue) => {
@@ -116,21 +73,21 @@ class Hpi extends Component {
   render() {
     const cc = this.props.encounter.hx.hpi.cc[0]
 
-    const keyArr = Object.keys(hpiInfo)
+    const keyArr = Object.keys(this.state.template)
     let hpiJSX = keyArr.map(element => {
-      if (hpiInfo[element].type === 'radio'){
+      if (this.state.template[element].type === 'radio'){
         return (
-          <RadioChoices key={element} choices={hpiInfo[element].choices} element={element} cc={cc} passChange={this.passChange} label={hpiInfo[element].label} otherChoice={hpiInfo[element].other} />
+          <RadioChoices key={element} choices={this.state.template[element].choices} element={element} cc={cc} passChange={this.passChange} label={this.state.template[element].label} otherChoice={this.state.template[element].other} />
         )
       }
-      if (hpiInfo[element].type === 'check'){
+      if (this.state.template[element].type === 'check'){
         return (
-          <CheckboxChoices key={element} choices={hpiInfo[element].choices} element={element} cc={cc} passChange={this.passMultiple} label={hpiInfo[element].label} />
+          <CheckboxChoices key={element} choices={this.state.template[element].choices} element={element} cc={cc} passChange={this.passMultiple} label={this.state.template[element].label} />
         )
       }
-      if (hpiInfo[element].type === 'write'){
+      if (this.state.template[element].type === 'write'){
         return (
-          <WriteInAnswer key={element} element={element} cc={cc} passChange={this.passChange} label={hpiInfo[element].label} />
+          <WriteInAnswer key={element} element={element} cc={cc} passChange={this.passChange} label={this.state.template[element].label} />
         )
       }
     })
