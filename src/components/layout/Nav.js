@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userLogout } from '../../actions/auth.actions'
+import { checkinComplete } from '../../actions/patients'
 import logo from '../../logo.svg';
 import './styles/styles.css';
 
@@ -15,10 +16,21 @@ const Nav = (props) => {
     userId = false
   }
 
+  let checkInEncounterId;
+  try {
+    checkInEncounterId = props.encounter.id
+  } catch (e) {
+    checkInEncounterId = false
+  }
+
   return (
     <Menu>
       <Menu.Menu>
-        <Menu.Item onClick={() => props.history.push( userId ? '/physicianHome' : '/' )}>
+        <Menu.Item onClick={async() => {
+          if(checkInEncounterId){
+            await props.checkinComplete()
+          }
+          props.history.push( userId ? '/physicianHome' : '/' )}}>
           PatientDirect <img src={logo} alt="logo" className="NavBar-logo"/>
         </Menu.Item>
       </Menu.Menu>
@@ -34,10 +46,10 @@ const Nav = (props) => {
       </Menu.Menu>
       :
       <Menu.Menu position="right">
-        <Menu.Item active={props.history.location.pathname === '/signup'} onClick={() => props.history.push('/signup')}>
+        <Menu.Item disabled={checkInEncounterId? true: false} active={props.history.location.pathname === '/signup'} onClick={() => props.history.push('/signup')}>
           Physician Sign Up
         </Menu.Item>
-        <Menu.Item active={props.history.location.pathname === '/login'} onClick={() =>
+        <Menu.Item disabled={checkInEncounterId? true: false} active={props.history.location.pathname === '/login'} onClick={() =>
           props.history.push('/login')}>
           Physician Login
         </Menu.Item>
@@ -56,7 +68,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
   return{
-    userLogout: bindActionCreators(userLogout, dispatch)
+    userLogout: bindActionCreators(userLogout, dispatch),
+    checkinComplete: bindActionCreators(checkinComplete, dispatch)
   }
 }
 

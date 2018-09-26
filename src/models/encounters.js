@@ -18,7 +18,6 @@ function getAllByDate(dateNumber, token){
 }
 
 function getById(encounter_id, dateNumber, token){
-  console.log('requesting', encounter_id, dateNumber, token)
   return axios.get(`${BASE_URL}/${dateNumber}/${encounter_id}`, {
     headers: {
       'Authorization' : `Bearer ${token}`

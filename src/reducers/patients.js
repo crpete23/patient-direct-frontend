@@ -1,7 +1,8 @@
 import {
   CHECKED_IN,
   FAILED_CHECK_IN,
-  UPDATED_HX
+  UPDATED_HX,
+  CHECKIN_COMPLETE
 } from '../actions/patients'
 
 const initialState = {
@@ -17,6 +18,8 @@ function patients(state=initialState, {type, payload}){
       return { checkInEncounter: {}, checkInError: true }
     case UPDATED_HX:
       return { checkInEncounter: payload, checkInError: false }
+    case CHECKIN_COMPLETE:
+      return { checkInEncounter: {}, checkInError: false }
     default: return state
   }
 }

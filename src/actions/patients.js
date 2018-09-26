@@ -5,6 +5,7 @@ var moment = require('moment')
 export const CHECKED_IN = 'CHECKED IN'
 export const FAILED_CHECK_IN = 'FAILED_CHECK_IN'
 export const UPDATED_HX = 'UPDATED_HX'
+export const CHECKIN_COMPLETE = 'CHECKIN_COMPLETE'
 
 export const checkIn = (first_name, last_name, dob) => {
   const dobNumber = dob.replace(/-/g, '')
@@ -51,5 +52,11 @@ export const updateHx = (patient_id, encounter_id, hx) => {
     } catch (e){
       console.log(e)
     }
+  }
+}
+
+export const checkinComplete = () => {
+  return async (dispatch) => {
+    dispatch({type: CHECKIN_COMPLETE})
   }
 }
