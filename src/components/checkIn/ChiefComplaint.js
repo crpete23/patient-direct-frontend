@@ -74,7 +74,7 @@ export class ChiefComplaint extends Component {
                 </Grid.Row>
                 <Grid.Row centered>
                   <Grid.Column width={12}>
-                    <CCdropdown updateCC={this.updateCC} value={this.state.chief_complaints} />
+                    <CCdropdown updateCC={this.updateCC} value={this.state.chief_complaints} doctor_id={this.props.encounter.doctor_id} />
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
+import tempModels from '../../models/templates.js'
 
-const options = [
+let options = [
   { key: 'Chest Pain', text: 'Chest Pain', value: 'Chest Pain' },
   { key: 'Shortness of Breath', text: 'Shortness of Breath', value: 'Shortness of Breath' },
   { key: 'Palpitations', text: 'Palpitations', value: 'Palpitations' },
@@ -12,6 +13,13 @@ const options = [
 export class CCdropdown extends Component {
   state = {
     chief_complaints: this.props.value
+  }
+
+  async componentDidMount(){
+    const resp = await tempModels.getCCList(this.props.doctor_id)
+    options = resp.data['chief_complaints'].map(cc => {
+      return { key: cc, text: cc, value: cc}
+    })
   }
 
   renderLabel = (label) => {
