@@ -15,7 +15,7 @@ class Hpi extends Component {
   }
 
   async componentDidMount(){
-    const resp = await tempModels.getTemplate(this.props.encounter.doctor_id, this.props.encounter.hx.hpi.cc[0])
+    const resp = await tempModels.getHpiTemplate(this.props.encounter.doctor_id, this.props.encounter.hx.hpi.cc[0])
     const template = resp.data.template
     this.setState({
       ...this.state,

@@ -3,59 +3,22 @@ import { Grid, Form, Segment } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
+import tempModels from '../../models/templates.js'
 import { updateHx } from '../../actions/patients'
 import SystemChecker from './SystemChecker'
 
-const rosInfo = {
-  constitutional: {
-            fatigue: false, fever: false,
-            unintentionalWeightLoss: false
-          },
-          eyes: {
-            eyePain: false,
-            blurryVision: false
-          },
-          ENT: {
-            soreThroat: false,
-            epistaxis: false
-          },
-          Cardiovascular: {
-            cp: true, palpitations: false, dyspnea: true
-          },
-          Respiratory: {
-            sob: true,
-            cough: false
-          },
-          GI: {
-            nausea: false,
-            vomiting: false,
-            hematochezia: false,
-            melena: false
-          },
-          GU: {
-            hematuria: false
-          },
-          Musc: {
-            musclePain: false,
-            jointPain: false
-          },
-          Neuro: {
-            hxCVA: false,
-            hxTIA: false,
-            headache: true,
-            lightheadedness: false
-          },
-          Endocrine: {
-            dm: false
-          },
-          Hematologic: {
-            anticoagulants: false
-          }
-        }
-
 class ReviewOfSystems extends Component {
   state = {
+    template: {}
+  }
 
+  async componentDidMount(){
+    const resp = await tempModels.getRosTemplate(this.props.encounter.doctor_id)
+    const template = resp.data.template
+    this.setState({
+      ...this.state,
+      template
+    })
   }
 
   passChange = (updateName, updateValue) => {
@@ -80,16 +43,18 @@ class ReviewOfSystems extends Component {
         }
       }
 
+      delete hx.ros.template
+
 
       await this.props.updateHx(encounter.patient_id, encounter.id, hx)
       this.props.submitted()
     }
 
   render() {
-    const keyArr = Object.keys(rosInfo)
+    const keyArr = Object.keys(this.state.template)
     let rosJSX = keyArr.map(system => {
       return (
-        <SystemChecker key={system} system={system} options={rosInfo[system]} passChange={this.passChange}/>
+        <SystemChecker key={system} system={system} options={this.state.template[system]} passChange={this.passChange}/>
       )
     })
 

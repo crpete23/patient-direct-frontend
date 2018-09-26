@@ -5,11 +5,16 @@ function getCCList(doctor_id){
   return axios.get(`${BASE_URL}/${doctor_id}/hpi`)
 }
 
-function getTemplate(doctor_id, cc){
+function getHpiTemplate(doctor_id, cc){
   return axios.get(`${BASE_URL}/${doctor_id}/hpi/${cc}`)
+}
+
+function getRosTemplate(doctor_id){
+  return axios.get(`${BASE_URL}/${doctor_id}/ros`)
 }
 
 export default {
   getCCList,
-  getTemplate
+  getHpiTemplate,
+  getRosTemplate
 }
