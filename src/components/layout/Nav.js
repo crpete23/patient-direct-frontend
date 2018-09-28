@@ -37,6 +37,13 @@ const Nav = (props) => {
       {
         userId ?
       <Menu.Menu position="right">
+        <Menu.Item active={props.history.location.pathname === '/physicianHome'} onClick={() => props.history.push('/physicianHome')}>
+          Physician Home
+        </Menu.Item>
+        <Menu.Item active={props.history.location.pathname === '/templates'} onClick={() =>
+          props.history.push('/templates')}>
+          Update Templates
+        </Menu.Item>
         <Menu.Item onClick={ async() => {
           await props.userLogout()
           props.history.push('/login')

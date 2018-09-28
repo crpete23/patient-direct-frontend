@@ -21,8 +21,6 @@ class EncounterList extends Component {
       return new Date('1970/01/01 ' + a.time) - new Date('1970/01/01 ' + b.time)})
       .map(encounter => <Encounter key={encounter.id} {...encounter} />)
 
-      console.log(encountersList)
-
     return (
       <List celled>
         {encountersList}

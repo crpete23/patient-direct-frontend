@@ -4,3 +4,4 @@ export * from './helpers';
 export * from './patientHome';
 export * from './physicians';
 export * from './checkIn';
+export * from './updateTemplates'

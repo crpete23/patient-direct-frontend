@@ -52,7 +52,8 @@ export class PhysicianHome extends Component {
 
 function mapStateToProps(state){
   return {
-    encounters: state.encounters
+    encounters: state.encounters,
+    auth: state.auth
   }
 }
 
