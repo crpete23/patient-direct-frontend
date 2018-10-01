@@ -102,9 +102,10 @@ export class TemplateForm extends Component {
         cc: this.props.temp
       })
     }else {
+      const resp = await tempModels.getRosTemplate(this.props.userId)
       this.setState({
         ...this.state,
-        template: {},
+        template: resp.data.template,
         success: false,
         cc: this.props.temp
       })
@@ -129,9 +130,10 @@ export class TemplateForm extends Component {
           cc: this.props.temp
         })
       }else {
+        const resp = await tempModels.getRosTemplate(this.props.userId)
         this.setState({
           ...this.state,
-          template: {},
+          template: resp.data.template,
           success: false,
           cc: this.props.temp
         })
@@ -157,66 +159,111 @@ export class TemplateForm extends Component {
         }
         await tempModels.createHpiTemplate(this.props.userId, newTemp)
         this.props.selectTemplate(this.state.cc)
+      } else {
+        await tempModels.updateRosTemplate(this.props.userId, {template: this.state.template})
+        this.setState({
+          ...this.state,
+          success: true
+        })
       }
     }
 
   render(){
-    const keyArr = Object.keys(this.state.template)
-    let hpiUpdate = keyArr.map(element =>{
-      if (this.state.template[element].type === 'radio' || this.state.template[element].type === 'check'){
-        return (
-          <List.Item key={element}>
-            <h3>{element}</h3>
-            <List.Content>
-              <Form>
-                <Form.Field>
-                  <label>Label</label>
-                  <input value={this.state.template[element].label} onChange={((e)=>{
-                    this.setState({
-                      ...this.state,
-                      template: {
-                        ...this.state.template,
-                        [element]:{
-                          ...this.state.template[element],
-                          label: e.target.value
+    let updateTemplate;
+
+    if(this.props.temp!=='ros'){
+      const keyArr = Object.keys(this.state.template)
+      updateTemplate = keyArr.map(element =>{
+        if (this.state.template[element].type === 'radio' || this.state.template[element].type === 'check'){
+          return (
+            <List.Item key={element}>
+              <h3>{element}</h3>
+              <List.Content>
+                <Form>
+                  <Form.Field>
+                    <label>Label</label>
+                    <input value={this.state.template[element].label} onChange={((e)=>{
+                      this.setState({
+                        ...this.state,
+                        template: {
+                          ...this.state.template,
+                          [element]:{
+                            ...this.state.template[element],
+                            label: e.target.value
+                          }
                         }
-                      }
-                    })
-                  })}/>
-                </Form.Field>
-              </Form>
-              <List>
-                <h5>Choices</h5>
-                {this.state.template[element].choices.map((choice, i)=>{
-                  return (
-                    <List.Item key={choice}>
-                      {choice} <a onClick={()=>{ this.state.template[element].choices.splice(i,1);
-                        this.setState({
-                        ...this.state
                       })
-                    }}>Remove</a>
-                    </List.Item>
-                  )
-                })}
-              </List>
-              <Form onSubmit={ (e)=>{
-                e.preventDefault;
-                this.state.template[element].choices.push(this.state[element]);
-                this.setState({
-                  ...this.state,
-                  [element]:''
-                })
-              }}>
-                <Form.Group>
-                  <Form.Input name={element} placeholder='Add to Choices' value={this.state[element]} onChange={this.handleChange}/>
-                  <Form.Button content='Add to Choices' />
-                </Form.Group>
-              </Form>
-            </List.Content>
-          </List.Item>
-        )
-      }
+                    })}/>
+                  </Form.Field>
+                </Form>
+                <List>
+                  <h5>Choices</h5>
+                  {this.state.template[element].choices.map((choice, i)=>{
+                    return (
+                      <List.Item key={choice}>
+                        {choice} <a onClick={()=>{ this.state.template[element].choices.splice(i,1);
+                          this.setState({
+                          ...this.state
+                        })
+                      }}>Remove</a>
+                      </List.Item>
+                    )
+                  })}
+                </List>
+                <Form onSubmit={ (e)=>{
+                  e.preventDefault;
+                  this.state.template[element].choices.push(this.state[element]);
+                  this.setState({
+                    ...this.state,
+                    [element]:''
+                  })
+                }}>
+                  <Form.Group>
+                    <Form.Input name={element} placeholder='Add to Choices' value={this.state[element]} onChange={this.handleChange}/>
+                    <Form.Button content='Add to Choices' />
+                  </Form.Group>
+                </Form>
+              </List.Content>
+            </List.Item>
+          )
+        }
+      })
+    } else {
+    const keyArr = Object.keys(this.state.template)
+    updateTemplate = keyArr.map(system => {
+      return (<List.Item key={system}>
+        <h3>{system}</h3>
+        <List.Content>
+          <List>
+            {
+              Object.keys(this.state.template[system]).map(symptom => {
+                return (<List.Item key={symptom}>{symptom}<a onClick={() => {
+                    delete this.state.template[system][symptom]
+                    this.setState({
+                      ...this.state
+                    })
+                  }}>Remove</a>
+                </List.Item>)
+              })
+            }
+          </List>
+          <Form onSubmit={ (e)=>{
+            e.preventDefault;
+            this.state.template[system][this.state[system]]=false;
+            this.setState({
+              ...this.state,
+              [system]:''
+            })
+          }}>
+            <Form.Group>
+              <Form.Input name={system} placeholder='Add to System Template' value={this.state[system]} onChange={this.handleChange}/>
+              <Form.Button content={`Add to ${system}`} />
+            </Form.Group>
+          </Form>
+        </List.Content>
+      </List.Item>)
     })
+    }
 
     return(
       <Segment>
@@ -239,7 +286,7 @@ export class TemplateForm extends Component {
     <Message.Header>{this.props.temp==='new' ? "New template has been successfully submitted" : "Changes have been successfully submitted" }</Message.Header>
   </Message> : null }
         <List celled>
-          { hpiUpdate }
+          { updateTemplate }
         </List>
       </Segment>
 
