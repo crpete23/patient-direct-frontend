@@ -22,9 +22,19 @@ function updateHpiTemplate(doctor_id, cc, updatesForTemplate){
   })
 }
 
+function createHpiTemplate(doctor_id, newTemp){
+  const token = localStorage.getItem('token')
+  return axios.post(`${BASE_URL}/${doctor_id}/hpi`, newTemp, {
+    headers: {
+      'Authorization' : `Bearer ${token}`
+    }
+  })
+}
+
 export default {
   getCCList,
   getHpiTemplate,
   getRosTemplate,
-  updateHpiTemplate
+  updateHpiTemplate,
+  createHpiTemplate
 }

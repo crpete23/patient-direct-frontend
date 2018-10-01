@@ -3,19 +3,110 @@ import { Button, Checkbox, Form, Grid, Segment, Label, List, Message } from 'sem
 
 import tempModels from '../../models/templates.js'
 
+const blankTemp = {
+"quality": {
+  "type": "radio",
+  "choices": [],
+  "label": "What quality best describes your symptoms?",
+  "other": true
+},
+"timing": {
+  "type": "radio",
+  "choices": [
+      "constant",
+      "intermittent",
+      "waxing and waning"
+  ],
+  "label": "What is the frequency/ timing of your symptoms?",
+  "other": true
+},
+"severity": {
+  "type": "radio",
+  "choices": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+  ],
+  "label": "What is the severity of your symtpoms?",
+  "other": false
+},
+"duration": {
+  "type": "radio",
+  "choices": [
+      "less than a minute",
+      "several minutes",
+      "one hour",
+      "several hours",
+      "one day",
+      "several days",
+      "several weeks",
+      "several months"
+  ],
+  "label": "When symptoms are present, how long do they usually last?",
+  "other": true
+},
+"location": {
+  "type": "radio",
+  "choices": [],
+  "label": "What is the location of your symptoms?",
+  "other": true
+},
+"alleviatingFactors": {
+  "type": "check",
+  "choices": [],
+  "label": "What, if anything, makes your symptoms better? (select all that apply)"
+},
+"exacerbatingFactors": {
+  "type": "check",
+  "choices": [],
+  "label": "What, if anything, induces or makes your symptoms worse? (select all that apply)"
+},
+"associatedSx": {
+  "type": "check",
+  "choices": [],
+  "label": "Have you experienced any other symptoms that you feel are related to your symptoms? (select all that apply)"
+},
+"context": {
+  "type": "write",
+  "label": "Briefly describe the context of your symptoms"
+}
+}
+
 export class TemplateForm extends Component {
   state = {
     template:{},
-    success: false
+    success: false,
+    cc: ''
   }
 
   async componentDidMount(){
     if(this.props.temp!=='ros' && this.props.temp!=='new'){
       const resp = await tempModels.getHpiTemplate(this.props.userId, this.props.temp)
-      console.log('CDM', this.props.temp, resp.data)
       this.setState({
         ...this.state,
-        template: resp.data.template
+        template: resp.data.template,
+        cc: this.props.temp
+      })
+    } else if(this.props.temp==='new'){
+      this.setState({
+        ...this.state,
+        template: blankTemp,
+        success: false,
+        cc: this.props.temp
+      })
+    }else {
+      this.setState({
+        ...this.state,
+        template: {},
+        success: false,
+        cc: this.props.temp
       })
     }
   }
@@ -24,17 +115,25 @@ export class TemplateForm extends Component {
     if(this.props.temp!==prevProps.temp){
       if(this.props.temp!=='ros' && this.props.temp!=='new'){
         const resp = await tempModels.getHpiTemplate(this.props.userId, this.props.temp)
-        console.log('CDU', this.props.temp, resp.data)
         this.setState({
           ...this.state,
           template: resp.data.template,
-          success: false
+          success: false,
+          cc: this.props.temp
         })
-      } else {
+      } else if(this.props.temp==='new'){
+        this.setState({
+          ...this.state,
+          template: blankTemp,
+          success: false,
+          cc: this.props.temp
+        })
+      }else {
         this.setState({
           ...this.state,
           template: {},
-          success: false
+          success: false,
+          cc: this.props.temp
         })
       }
     }
@@ -43,11 +142,22 @@ export class TemplateForm extends Component {
     handleChange = (e, { name, value }) => this.setState({ ...this.state, [name]: value })
 
     submitChange = async () => {
-      await tempModels.updateHpiTemplate(this.props.userId, this.props.temp, {template: this.state.template})
-      this.setState({
-        ...this.state,
-        success: true
-      })
+
+      if(this.props.temp!=='ros' && this.props.temp!=='new'){
+        await tempModels.updateHpiTemplate(this.props.userId, this.props.temp, {template: this.state.template})
+        this.setState({
+          ...this.state,
+          success: true
+        })
+      } else if(this.props.temp==='new') {
+        const newTemp = {
+          cc: this.state.cc,
+          doctor_id: this.props.userId,
+          template: this.state.template
+        }
+        await tempModels.createHpiTemplate(this.props.userId, newTemp)
+        this.props.selectTemplate(this.state.cc)
+      }
     }
 
   render(){
@@ -111,9 +221,22 @@ export class TemplateForm extends Component {
     return(
       <Segment>
         <h2>{this.props.temp}</h2>
-        <Button content='Submit Changes' onClick={this.submitChange}/>
+        { this.props.temp==='new' ?
+        <Form>
+        <Form.Field>
+        <label>Chief Complaint</label>
+        <input name='cc' value={this.state.cc} onChange={((e)=>{
+          this.setState({
+            ...this.state,
+            cc: e.target.value
+          })
+        })} />
+      </Form.Field>
+    </Form>
+        : null}
+        <Button content={(this.props.temp==='new') ? 'Submit New Template':'Submit Changes'} onClick={this.submitChange}/>
         { this.state.success ?   <Message positive>
-    <Message.Header>Changes have been successfully submitted</Message.Header>
+    <Message.Header>{this.props.temp==='new' ? "New template has been successfully submitted" : "Changes have been successfully submitted" }</Message.Header>
   </Message> : null }
         <List celled>
           { hpiUpdate }
