@@ -1,24 +1,24 @@
 import React from 'react'
 import { Segment, List } from 'semantic-ui-react'
 
-const TemplateList = ({hpiTemps, selectTemplate}) => {
+import tempModels from '../../models/templates.js'
+
+const TemplateList = ({hpiTemps, selectTemplate, userId, current, deselect }) => {
 
   let templatesList = [];
   templatesList.push(
-    <List.Item key={templatesList.length} onClick={()=>selectTemplate('ros')}>
-      <List.Content>
-        <List.Header>ROS</List.Header>
-      </List.Content>
+    <List.Item key={templatesList.length} onClick={()=>selectTemplate('ros')}>ROS
     </List.Item>
   );
 
   hpiTemps.forEach(temp => {
     templatesList.push(
-      <List.Item key={templatesList.length} onClick={()=>selectTemplate(temp)}>
-        <List.Content>
-          <List.Header>{temp}</List.Header>
-        </List.Content>
-      </List.Item>
+      <List.Item key={templatesList.length} onClick={()=>selectTemplate(temp)}> {temp}
+          <a onClick={async()=>{
+            await tempModels.deleteHpiTemplate(userId, temp)
+            deselect()
+          }}>Delete</a>
+        </List.Item>
     );
   })
 

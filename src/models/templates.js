@@ -31,10 +31,20 @@ function createHpiTemplate(doctor_id, newTemp){
   })
 }
 
+function deleteHpiTemplate(doctor_id, cc){
+  const token = localStorage.getItem('token')
+  return axios.delete(`${BASE_URL}/${doctor_id}/hpi/${cc}`, {
+    headers: {
+      'Authorization' : `Bearer ${token}`
+    }
+  })
+}
+
 export default {
   getCCList,
   getHpiTemplate,
   getRosTemplate,
   updateHpiTemplate,
-  createHpiTemplate
+  createHpiTemplate,
+  deleteHpiTemplate
 }

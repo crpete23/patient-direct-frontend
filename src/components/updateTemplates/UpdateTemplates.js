@@ -23,11 +23,25 @@ export class UpdateTemplates extends Component {
   }
 
   selectTemplate = async (value) => {
+    try{
+      const resp = await tempModels.getCCList(this.props.user.userId)
+      const chief_complaints = resp.data.chief_complaints;
+      this.setState({
+        ...this.state,
+        selected: value,
+        hpiTempOptions: chief_complaints
+      })
+    } catch (e){
+      console.log(e)
+    }
+  }
+
+  deselect = async () => {
     const resp = await tempModels.getCCList(this.props.user.userId)
     const chief_complaints = resp.data.chief_complaints;
     this.setState({
       ...this.state,
-      selected: value,
+      selected: '',
       hpiTempOptions: chief_complaints
     })
   }
@@ -37,7 +51,7 @@ export class UpdateTemplates extends Component {
       <Grid id='bodyGrid'>
         <Grid.Row>
           <Grid.Column width={6}>
-            <TemplateList hpiTemps={this.state.hpiTempOptions} selectTemplate={this.selectTemplate}/>
+            <TemplateList hpiTemps={this.state.hpiTempOptions} selectTemplate={this.selectTemplate} userId={this.props.user.userId} current={this.state.selected} deselect={this.deselect} />
           </Grid.Column>
           <Grid.Column width={10}>
             {this.state.selected ? < TemplateForm temp={this.state.selected} userId={this.props.user.userId} selectTemplate={this.selectTemplate} /> : null }
