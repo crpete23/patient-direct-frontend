@@ -79,7 +79,7 @@ const blankTemp = {
 }
 }
 
-export class TemplateForm extends Component {
+export class HpiTemplateForm extends Component {
   state = {
     template:{},
     success: false,
@@ -87,34 +87,26 @@ export class TemplateForm extends Component {
   }
 
   async componentDidMount(){
-    if(this.props.temp!=='ros' && this.props.temp!=='new'){
+    if(this.props.temp!=='new'){
       const resp = await tempModels.getHpiTemplate(this.props.userId, this.props.temp)
       this.setState({
         ...this.state,
         template: resp.data.template,
         cc: this.props.temp
       })
-    } else if(this.props.temp==='new'){
+    } else {
       this.setState({
         ...this.state,
         template: blankTemp,
         success: false,
-        cc: this.props.temp
-      })
-    }else {
-      const resp = await tempModels.getRosTemplate(this.props.userId)
-      this.setState({
-        ...this.state,
-        template: resp.data.template,
-        success: false,
-        cc: this.props.temp
+        cc: ''
       })
     }
   }
 
   async componentDidUpdate(prevProps){
     if(this.props.temp!==prevProps.temp){
-      if(this.props.temp!=='ros' && this.props.temp!=='new'){
+      if(this.props.temp!=='new'){
         const resp = await tempModels.getHpiTemplate(this.props.userId, this.props.temp)
         this.setState({
           ...this.state,
@@ -122,26 +114,24 @@ export class TemplateForm extends Component {
           success: false,
           cc: this.props.temp
         })
-      } else if(this.props.temp==='new'){
+      } else {
         this.setState({
           ...this.state,
           template: blankTemp,
           success: false,
-          cc: this.props.temp
-        })
-      }else {
-        const resp = await tempModels.getRosTemplate(this.props.userId)
-        this.setState({
-          ...this.state,
-          template: resp.data.template,
-          success: false,
-          cc: this.props.temp
+          cc: ''
         })
       }
     }
   }
 
-    handleChange = (e, { name, value }) => this.setState({ ...this.state, [name]: value })
+    handleChange = (e) => {
+      const name = e.target.name;
+      const value = e.target.value;
+
+      this.setState({ ...this.state,
+      [name]: value })
+    }
 
     submitChange = async () => {
 
@@ -151,7 +141,7 @@ export class TemplateForm extends Component {
           ...this.state,
           success: true
         })
-      } else if(this.props.temp==='new') {
+      } else {
         const newTemp = {
           cc: this.state.cc,
           doctor_id: this.props.userId,
@@ -159,21 +149,12 @@ export class TemplateForm extends Component {
         }
         await tempModels.createHpiTemplate(this.props.userId, newTemp)
         this.props.selectTemplate(this.state.cc)
-      } else {
-        await tempModels.updateRosTemplate(this.props.userId, {template: this.state.template})
-        this.setState({
-          ...this.state,
-          success: true
-        })
       }
     }
 
   render(){
-    let updateTemplate;
-
-    if(this.props.temp!=='ros'){
       const keyArr = Object.keys(this.state.template)
-      updateTemplate = keyArr.map(element =>{
+      let updateTemplate = keyArr.map(element =>{
         if (this.state.template[element].type === 'radio' || this.state.template[element].type === 'check'){
           return (
             <List.Item key={element}>
@@ -228,42 +209,6 @@ export class TemplateForm extends Component {
           )
         }
       })
-    } else {
-    const keyArr = Object.keys(this.state.template)
-    updateTemplate = keyArr.map(system => {
-      return (<List.Item key={system}>
-        <h3>{system}</h3>
-        <List.Content>
-          <List>
-            {
-              Object.keys(this.state.template[system]).map(symptom => {
-                return (<List.Item key={symptom}>{symptom}<a onClick={() => {
-                    delete this.state.template[system][symptom]
-                    this.setState({
-                      ...this.state
-                    })
-                  }}>Remove</a>
-                </List.Item>)
-              })
-            }
-          </List>
-          <Form onSubmit={ (e)=>{
-            e.preventDefault;
-            this.state.template[system][this.state[system]]=false;
-            this.setState({
-              ...this.state,
-              [system]:''
-            })
-          }}>
-            <Form.Group>
-              <Form.Input name={system} placeholder='Add to System Template' value={this.state[system]} onChange={this.handleChange}/>
-              <Form.Button content={`Add to ${system}`} />
-            </Form.Group>
-          </Form>
-        </List.Content>
-      </List.Item>)
-    })
-    }
 
     return(
       <Segment>
@@ -272,7 +217,7 @@ export class TemplateForm extends Component {
         <Form>
         <Form.Field>
         <label>Chief Complaint</label>
-        <input name='cc' value={this.state.cc} onChange={((e)=>{
+        <input name='cc' placeholder='Name of CC' value={this.state.cc} onChange={((e)=>{
           this.setState({
             ...this.state,
             cc: e.target.value
@@ -294,4 +239,4 @@ export class TemplateForm extends Component {
   }
 }
 
-export default TemplateForm
+export default HpiTemplateForm

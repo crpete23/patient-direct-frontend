@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
-import TemplateForm from './TemplateForm'
+import HelperTempForm from './HelperTempForm'
 import TemplateList from './TemplateList.js'
 import tempModels from '../../models/templates.js'
 import './styles/styles.css';
@@ -54,7 +54,7 @@ export class UpdateTemplates extends Component {
             <TemplateList hpiTemps={this.state.hpiTempOptions} selectTemplate={this.selectTemplate} userId={this.props.user.userId} current={this.state.selected} deselect={this.deselect} />
           </Grid.Column>
           <Grid.Column width={10}>
-            {this.state.selected ? < TemplateForm temp={this.state.selected} userId={this.props.user.userId} selectTemplate={this.selectTemplate} /> : null }
+            {this.state.selected ? < HelperTempForm temp={this.state.selected} userId={this.props.user.userId} selectTemplate={this.selectTemplate} /> : null }
           </Grid.Column>
         </Grid.Row>
       </Grid>
