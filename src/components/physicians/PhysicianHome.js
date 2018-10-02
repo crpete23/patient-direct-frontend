@@ -33,9 +33,15 @@ export class PhysicianHome extends Component {
           <Grid.Column width={1}>
           </Grid.Column>
           <Grid.Column width={8}>
-            <h1>Patient List</h1>
-            <h3>{this.state.selectedDate}</h3>
-            <EncounterList date={this.state.selectedDate} />
+            <Grid.Row className={"listHeader"}>
+              <h1>Patient List</h1>
+            </Grid.Row>
+            <Grid.Row className={"listHeader2"}>
+              <h3>{this.state.selectedDate}</h3>
+            </Grid.Row>
+            <Grid.Row>
+              <EncounterList date={this.state.selectedDate} />
+            </Grid.Row>
           </Grid.Column>
           <Grid.Column width={1}>
           </Grid.Column>
