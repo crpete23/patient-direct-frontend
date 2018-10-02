@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form, Grid, Segment, Label, List, Message } from 'semantic-ui-react'
+import { Button, Form, Segment, List, Message } from 'semantic-ui-react'
 
 import tempModels from '../../models/templates.js'
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Segment, Checkbox, Divider } from 'semantic-ui-react'
+import { Form, Segment, Checkbox } from 'semantic-ui-react'
 
 class CheckboxChoices extends Component {
 

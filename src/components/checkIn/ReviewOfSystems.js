@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Form, Segment } from 'semantic-ui-react'
+import { Grid, Form } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 

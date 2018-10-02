@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userLogin } from '../../actions/auth.actions'
 import { withRouter } from 'react-router-dom';
-import background from '../../images/loginBackground.jpg'
 import './styles/styles.css';
 
 export class Login extends Component {

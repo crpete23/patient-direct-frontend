@@ -3,9 +3,7 @@ import {
   Button,
   Form,
   Grid,
-  Segment,
-  Label,
-  Divider
+  Segment
 } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'

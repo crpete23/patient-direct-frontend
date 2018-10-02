@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import {
   Button,
-  Form,
-  Grid,
-  Segment,
-  Label,
-  Divider
+  Grid
 } from 'semantic-ui-react'
 
 import ChiefComplaint from './ChiefComplaint'
