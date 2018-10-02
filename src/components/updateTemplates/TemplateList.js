@@ -5,6 +5,10 @@ import tempModels from '../../models/templates.js'
 
 const TemplateList = ({hpiTemps, selectTemplate, userId, current, deselect }) => {
 
+  function upperCase (string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   let templatesList = [];
   templatesList.push(
     <List.Item key={templatesList.length} onClick={()=>selectTemplate('ros')}>ROS
@@ -13,7 +17,7 @@ const TemplateList = ({hpiTemps, selectTemplate, userId, current, deselect }) =>
 
   hpiTemps.forEach(temp => {
     templatesList.push(
-      <List.Item key={templatesList.length} onClick={()=>selectTemplate(temp)}> {temp}
+      <List.Item key={templatesList.length} onClick={()=>selectTemplate(temp)}> {upperCase(temp)}
           <a onClick={async()=>{
             await tempModels.deleteHpiTemplate(userId, temp)
             deselect()

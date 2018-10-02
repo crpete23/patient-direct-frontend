@@ -34,16 +34,20 @@ export class RosTempForm extends Component {
         })
       }
 
+      upperCase = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+
   render(){
     const keyArr = Object.keys(this.state.template)
     let updateTemplate = keyArr.map(system => {
       return (<List.Item key={system}>
-        <h3>{system}</h3>
+        <h3>{this.upperCase(system)}</h3>
         <List.Content>
           <List>
             {
               Object.keys(this.state.template[system]).map(symptom => {
-                return (<List.Item key={symptom}>{symptom}<a onClick={() => {
+                return (<List.Item key={symptom}>{this.upperCase(symptom)}<a onClick={() => {
                     delete this.state.template[system][symptom]
                     this.setState({
                       ...this.state

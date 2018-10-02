@@ -1,3 +1,8 @@
+
+#navBar{
+  background-color: #F7F7F7;
+}
+
 .NavBar-logo {
   animation: NavBar-logo-spin infinite 10s linear;
 }

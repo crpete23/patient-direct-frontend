@@ -2,6 +2,11 @@ import React from 'react'
 import {List} from 'semantic-ui-react'
 
 const Hpi = (hpi) => {
+
+  function upperCase (string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   const keys = Object.keys(hpi);
 
   let historyList = [];
@@ -19,7 +24,7 @@ const Hpi = (hpi) => {
     }
     historyList.push(
       <List.Item key={i}>
-        {`${keys[i]}: ${valueString}`}
+        {`${upperCase(keys[i])}: ${valueString}`}
       </List.Item>
     )
   }

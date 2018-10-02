@@ -24,7 +24,7 @@ const Nav = (props) => {
   }
 
   return (
-    <Menu>
+    <Menu id="navBar">
       <Menu.Menu>
         <Menu.Item onClick={async() => {
           if(checkInEncounterId){

@@ -2,6 +2,11 @@ import React from 'react'
 import {List} from 'semantic-ui-react'
 
 const Ros = (ros) => {
+
+  function upperCase (string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   const keys = Object.keys(ros);
 
   let rosList = [];
@@ -24,7 +29,7 @@ const Ros = (ros) => {
 
     rosList.push(
       <List.Item key={i}>
-        {`${keys[i]}: `} {valueArr}
+        {`${upperCase(keys[i])}: `} {valueArr}
       </List.Item>
     )
   }

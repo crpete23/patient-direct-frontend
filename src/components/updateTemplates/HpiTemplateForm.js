@@ -152,13 +152,18 @@ export class HpiTemplateForm extends Component {
       }
     }
 
+    upperCase = (string) => {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+
   render(){
       const keyArr = Object.keys(this.state.template)
       let updateTemplate = keyArr.map(element =>{
         if (this.state.template[element].type === 'radio' || this.state.template[element].type === 'check'){
           return (
             <List.Item key={element}>
-              <h3>{element}</h3>
+              <h3>{this.upperCase(element)}</h3>
               <List.Content>
                 <Form>
                   <Form.Field>
@@ -182,7 +187,7 @@ export class HpiTemplateForm extends Component {
                   {this.state.template[element].choices.map((choice, i)=>{
                     return (
                       <List.Item key={choice}>
-                        {choice} <a onClick={()=>{ this.state.template[element].choices.splice(i,1);
+                        {this.upperCase(choice)} <a onClick={()=>{ this.state.template[element].choices.splice(i,1);
                           this.setState({
                           ...this.state
                         })
@@ -212,7 +217,7 @@ export class HpiTemplateForm extends Component {
 
     return(
       <Segment>
-        <h2>{this.props.temp}</h2>
+        <h2>{this.upperCase(this.props.temp)}</h2>
         { this.props.temp==='new' ?
         <Form>
         <Form.Field>
