@@ -4,12 +4,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userLogin } from '../../actions/auth.actions'
 import { withRouter } from 'react-router-dom';
-
-const styles = {
-  root: {
-    marginTop: '5%'
-  }
-}
+import background from '../../images/loginBackground.jpg'
+import './styles/styles.css';
 
 export class Login extends Component {
   state = {
@@ -44,7 +40,7 @@ export class Login extends Component {
 
   render(){
     return (
-      <Grid centered style={styles.root}>
+      <Grid centered id='loginBodyGrid'>
         <Grid.Column stretched width={3}>
           <Form onSubmit={this.loginAttempt}>
             <Segment>

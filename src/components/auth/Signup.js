@@ -5,12 +5,6 @@ import { bindActionCreators } from 'redux'
 import { userSignup } from '../../actions/auth.actions'
 import { withRouter } from 'react-router-dom';
 
-const styles = {
-  root: {
-    marginTop: '5%'
-  }
-}
-
 export class Signup extends Component {
   state = {
     firstName: '',
@@ -52,7 +46,7 @@ export class Signup extends Component {
 
   render(){
     return (
-        <Grid centered style={styles.root}>
+        <Grid centered id='loginBodyGrid'>
           <Grid.Column stretched width={3}>
             <Form onSubmit={this.signup}>
               <Segment>
