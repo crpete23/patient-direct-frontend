@@ -52,7 +52,7 @@ export class Login extends Component {
             </Form.Field>
             <Form.Field>
               <label>Password</label>
-              <input name="password" type="password" placeholder="Password" onChange={this.onChange} value={this.state.password} />
+              <input name="password" type="password" placeholder="Password" autoComplete="section-blue current-password" onChange={this.onChange} value={this.state.password} />
             </Form.Field>
             <Grid>
               <Grid.Column width={3}></Grid.Column>
