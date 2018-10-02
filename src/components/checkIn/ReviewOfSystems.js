@@ -63,6 +63,8 @@ class ReviewOfSystems extends Component {
         <Grid.Column width={2}>
         </Grid.Column>
         <Grid.Column width={12}>
+          <h2>Review of Systems</h2>
+          <h4>Please select all that apply</h4>
           <Form onSubmit={this.submitROS}>
             {rosJSX}
             <Form.Button>Submit</Form.Button>

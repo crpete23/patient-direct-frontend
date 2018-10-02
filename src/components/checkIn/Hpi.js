@@ -99,6 +99,8 @@ class Hpi extends Component {
         <Grid.Column width={2}>
         </Grid.Column>
         <Grid.Column width={12}>
+          <h2>History of Present Illness</h2>
+          <h4>{`Please answer a few questions about your ${this.props.encounter.hx.hpi.cc[0]}`}</h4>
           <Form onSubmit={this.submitHPI}>
             {hpiJSX}
             <Form.Button>Submit</Form.Button>

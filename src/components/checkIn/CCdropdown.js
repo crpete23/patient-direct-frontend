@@ -11,7 +11,7 @@ export class CCdropdown extends Component {
   async componentDidMount(){
     const resp = await tempModels.getCCList(this.props.doctor_id)
     let options = resp.data['chief_complaints'].map(cc => {
-      return { key: cc, text: cc, value: cc}
+      return { key: cc, text: this.upperCase(cc), value: cc}
     })
     this.setState({
       ...this.state,
@@ -30,7 +30,7 @@ export class CCdropdown extends Component {
     }
       return ({
       color: 'blue',
-      content: `${number}) ${label.text}`
+      content: `${number}) ${this.upperCase(label.text)}`
     })
   }
 
@@ -39,6 +39,10 @@ export class CCdropdown extends Component {
     this.setState({ chief_complaints: value }
     )
   }
+
+  upperCase = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
   render(){
     return (

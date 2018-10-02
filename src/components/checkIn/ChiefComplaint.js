@@ -52,6 +52,10 @@ export class ChiefComplaint extends Component {
     this.props.submitted()
   }
 
+  upperCase = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
   render() {
     let noCC;
     try{
@@ -63,7 +67,7 @@ export class ChiefComplaint extends Component {
     return (<Grid centered>
       <Grid.Column width={10}>
         <Grid.Row>
-          <h2>{`Welcome ${this.props.encounter.first_name} ${this.props.encounter.last_name}. Your appointment today is scheduled with ${this.props.encounter.doc_first_name} ${this.props.encounter.doc_last_name} at ${this.props.encounter.time}.`}</h2>
+          <h2>{`Welcome ${this.upperCase(this.props.encounter.first_name)} ${this.upperCase(this.props.encounter.last_name)}. Your appointment today is scheduled with ${this.upperCase(this.props.encounter.doc_first_name)} ${this.upperCase(this.props.encounter.doc_last_name)} at ${this.props.encounter.time}.`}</h2>
           <Segment>
             <Form onSubmit={this.submitCC}>
               <Grid>

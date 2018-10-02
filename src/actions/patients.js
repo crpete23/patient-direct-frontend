@@ -10,7 +10,6 @@ export const CHECKIN_COMPLETE = 'CHECKIN_COMPLETE'
 export const checkIn = (first_name, last_name, dob) => {
   const dobNumber = dob.replace(/-/g, '')
   const today = moment().format(`YYYYMMDD`)
-  //const today = '20180830'
   return async(dispatch) => {
     try {
       let response = await patientsModel.checkIn(first_name, last_name, dobNumber, today)

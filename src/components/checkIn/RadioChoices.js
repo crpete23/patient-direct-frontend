@@ -14,13 +14,17 @@ class RadioChoices extends Component {
     })
     }
 
+    upperCase = (string) => {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
 
   render() {
     const choicesJSX = this.props.choices.map(choice => {
       return (
         <Form.Radio
           key={choice}
-          label={choice}
+          label={this.upperCase(choice)}
           name={this.props.element}
           value={choice}
           checked={this.state[this.props.element]===choice}

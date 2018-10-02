@@ -21,13 +21,17 @@ class CheckboxChoices extends Component {
     })
   }
 
+  upperCase = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 
   render() {
     const choicesJSX = this.props.choices.map(choice => {
       return (
         <Checkbox
           key={choice}
-          label={choice}
+          label={this.upperCase(choice)}
           name={this.props.element}
           value={choice}
           onChange={this.handleChange}

@@ -31,12 +31,16 @@ class SystemChecker extends Component {
     })
     }
 
+    upperCase = (string) => {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   render() {
     let optionsArr = Object.keys(this.props.options)
     const optionsJSX = optionsArr.map(option => {
       return (
         <Form.Group inline key={option}>
-          <label>{option}</label>
+          <label>{this.upperCase(option)}</label>
           <Form.Radio
             label='Yes'
             name={`${this.props.system}_${option}`}
