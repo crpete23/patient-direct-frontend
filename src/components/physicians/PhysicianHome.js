@@ -25,13 +25,19 @@ export class PhysicianHome extends Component {
     return (
       <Grid id='bodyGrid'>
         <Grid.Row>
-          <Grid.Column width={6}>
+          <Grid.Column width={1}>
+          </Grid.Column>
+          <Grid.Column width={5}>
           <DateFormInline changedDate={this.changedDate} />
           </Grid.Column>
-          <Grid.Column width={10}>
+          <Grid.Column width={1}>
+          </Grid.Column>
+          <Grid.Column width={8}>
             <h1>Patient List</h1>
             <h3>{this.state.selectedDate}</h3>
             <EncounterList date={this.state.selectedDate} />
+          </Grid.Column>
+          <Grid.Column width={1}>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row centered>
