@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux'
 const Encounter = ({id, date, dob, first_name, last_name, sex, time, getEncounterById, checkedIn, selected }) => {
   const dateOfBirth = `${dob.slice(5)}/${dob.slice(0,4)}`
 
-  const isSelected = selected===id ? 'selected' : '';
+  const isSelected = selected===id ? 'selectedEncounter' : '';
 
   function upperCase (string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

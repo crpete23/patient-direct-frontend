@@ -2,6 +2,7 @@
   margin-top: 5%;
 }
 
-.selected {
+.selectedTemplate {
   background: #efefef;
+  box-shadow: 0 0 5px 1px #555;
 }

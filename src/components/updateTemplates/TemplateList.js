@@ -11,13 +11,13 @@ const TemplateList = ({hpiTemps, selectTemplate, userId, current, deselect }) =>
 
   let templatesList = [];
   templatesList.push(
-    <List.Item className={current==='ros'? 'selected': null} key={templatesList.length} onClick={()=>selectTemplate('ros')}>ROS
+    <List.Item className={current==='ros'? 'selectedTemplate': null} key={templatesList.length} onClick={()=>selectTemplate('ros')}>ROS
     </List.Item>
   );
 
   hpiTemps.forEach(temp => {
     templatesList.push(
-      <List.Item className={current===temp? 'selected': null} key={templatesList.length} onClick={()=>selectTemplate(temp)}> {upperCase(temp)}
+      <List.Item className={current===temp? 'selectedTemplate': null} key={templatesList.length} onClick={()=>selectTemplate(temp)}> {upperCase(temp)}
           <a onClick={async()=>{
             await tempModels.deleteHpiTemplate(userId, temp)
             deselect()
@@ -27,7 +27,7 @@ const TemplateList = ({hpiTemps, selectTemplate, userId, current, deselect }) =>
   })
 
   templatesList.push(
-    <List.Item className={current==='new'? 'selected': null} key={templatesList.length} onClick={()=>selectTemplate('new')}>
+    <List.Item className={current==='new'? 'selectedTemplate': null} key={templatesList.length} onClick={()=>selectTemplate('new')}>
       <List.Content>
         <List.Header>--- Create New HPI Template ---</List.Header>
       </List.Content>

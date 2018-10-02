@@ -50,11 +50,15 @@ export class UpdateTemplates extends Component {
     return (
       <Grid id='bodyGrid'>
         <Grid.Row>
-          <Grid.Column width={6}>
+          <Grid.Column width={1}>
+          </Grid.Column>
+          <Grid.Column width={5}>
             <TemplateList hpiTemps={this.state.hpiTempOptions} selectTemplate={this.selectTemplate} userId={this.props.user.userId} current={this.state.selected} deselect={this.deselect} />
           </Grid.Column>
-          <Grid.Column width={10}>
+          <Grid.Column width={9}>
             {this.state.selected ? < HelperTempForm temp={this.state.selected} userId={this.props.user.userId} selectTemplate={this.selectTemplate} /> : null }
+          </Grid.Column>
+          <Grid.Column width={1}>
           </Grid.Column>
         </Grid.Row>
       </Grid>

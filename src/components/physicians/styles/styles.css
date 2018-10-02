@@ -2,8 +2,9 @@
   margin-top: 5%;
 }
 
-.selected {
+.selectedEncounter {
   background: #efefef;
+  box-shadow: 0 0 5px 1px #555;
 }
 
 .listHeader{
