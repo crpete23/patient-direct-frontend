@@ -1,3 +1,7 @@
 #bodyGrid {
   margin-top: 5%;
 }
+
+.selected {
+  background: #efefef;
+}
