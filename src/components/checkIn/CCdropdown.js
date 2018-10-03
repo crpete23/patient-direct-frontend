@@ -29,8 +29,8 @@ export class CCdropdown extends Component {
       number++;
     }
       return ({
-      color: 'blue',
-      content: `${number}) ${this.upperCase(label.text)}`
+        color: 'blue',
+        content: `${number}) ${this.upperCase(label.text)}`
     })
   }
 

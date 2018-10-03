@@ -62,7 +62,7 @@ class ReviewOfSystems extends Component {
       <Grid columns={3}>
         <Grid.Column width={2}>
         </Grid.Column>
-        <Grid.Column width={12}>
+        <Grid.Column width={12} className="checkInContainer">
           <h2>Review of Systems</h2>
           <h4>Please select all that apply</h4>
           <Form onSubmit={this.submitROS}>

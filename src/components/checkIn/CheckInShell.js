@@ -71,7 +71,8 @@ export class CheckInShell extends Component {
 
   render() {
     return (
-      <Grid centered id='bodyGrid'>
+      <Grid centered id='checkInBodyGrid'>
+        <div className="bg"></div>
         <Grid.Row>
           {
             this.state.page[this.state.pageNum]
@@ -82,8 +83,8 @@ export class CheckInShell extends Component {
           </Grid.Column>
           <Grid.Column width={4}>
             <Button.Group>
-              <Button disabled={(this.state.page[this.state.pageNum-1]) ? false: true} onClick={this.pageBack} labelPosition='left' icon='left chevron' content='Back' />
-              <Button disabled={(this.state.page[this.state.pageNum+1]&&(!this.state.holdNext)) ? false: true} onClick={this.pageForward} labelPosition='right' icon='right chevron' content='Next' />
+              <Button id="backCheckInButton" disabled={(this.state.page[this.state.pageNum-1]) ? false: true} onClick={this.pageBack} labelPosition='left' icon='left chevron' content='Back' />
+              <Button id="nextCheckInButton" disabled={(this.state.page[this.state.pageNum+1]&&(!this.state.holdNext)) ? false: true} onClick={this.pageForward} labelPosition='right' icon='right chevron' content='Next' />
             </Button.Group>
           </Grid.Column>
         </Grid.Row>

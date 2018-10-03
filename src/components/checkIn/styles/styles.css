@@ -1,3 +1,45 @@
-#bodyGrid {
+
+#checkInBodyGrid {
+  padding-top: 5%;
+  z-index: 1;
+}
+
+.bg {
+  background-image: url('../../../images/loginBackground2.jpg');
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  opacity: .5;
+  height: 100%;
+  width: 100%;
+  background-size: 100% 100%;
+}
+
+.checkInContainer {
+  background-color: #F7F7F7;
+  box-shadow: 0 0 5px 3px #555;
+  opacity: .95;
+}
+
+.centerHeader {
+  text-align: center;
+}
+
+.questionnaireSegment {
+  width: 100%;
+}
+
+.marginTop5 {
   margin-top: 5%;
+}
+
+#backCheckInButton {
+  background-color: #D2D2D2;
+  box-shadow: -3px 1px 5px 3px #555;
+}
+
+#nextCheckInButton {
+  background-color: #D2D2D2;
+  box-shadow: 3px 1px 5px 3px #555;
 }

@@ -41,7 +41,7 @@ class CheckboxChoices extends Component {
     })
 
     return (
-      <Segment>
+      <Segment  className="questionnaireSegment">
         <Form.Group>
           <label>{this.props.label}</label>
           {choicesJSX}

@@ -62,16 +62,20 @@ export class ChiefComplaint extends Component {
       noCC = true
     }
 
-    return (<Grid centered>
-      <Grid.Column width={10}>
+    return (<Grid>
+      <Grid.Column width={3}>
+      </Grid.Column>
+      <Grid.Column width={10} className="checkInContainer">
         <Grid.Row>
+          <div className="centerHeader">
           <h2>{`Welcome ${this.upperCase(this.props.encounter.first_name)} ${this.upperCase(this.props.encounter.last_name)}. Your appointment today is scheduled with ${this.upperCase(this.props.encounter.doc_first_name)} ${this.upperCase(this.props.encounter.doc_last_name)} at ${this.props.encounter.time}.`}</h2>
+          </div>
           <Segment>
             <Form onSubmit={this.submitCC}>
               <Grid>
                 <Grid.Row centered>
                   <Grid.Column width={14}>
-                    <h2>What is the reason for your visit today? (may select multiple reasons in the dropdown below, please select in order of importance)</h2>
+                    <h2>What is the reason for your visit today? (May select multiple reasons in the dropdown below. Please select in order of importance.)</h2>
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row centered>
@@ -90,6 +94,8 @@ export class ChiefComplaint extends Component {
             </Form>
           </Segment>
         </Grid.Row>
+      </Grid.Column>
+      <Grid.Column width={3}>
       </Grid.Column>
     </Grid>)
   }

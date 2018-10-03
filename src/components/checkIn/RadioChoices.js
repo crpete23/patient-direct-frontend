@@ -34,7 +34,7 @@ class RadioChoices extends Component {
     })
 
     return (
-      <Segment>
+      <Segment className="questionnaireSegment">
         <Form.Group inline>
           <label>{this.props.label}</label>
           {choicesJSX}

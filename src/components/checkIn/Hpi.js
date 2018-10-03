@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Form } from 'semantic-ui-react'
+import { Grid, Form, Button, Label } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
@@ -98,13 +98,33 @@ class Hpi extends Component {
       <Grid columns={3}>
         <Grid.Column width={2}>
         </Grid.Column>
-        <Grid.Column width={12}>
-          <h2>History of Present Illness</h2>
+        <Grid.Column width={12} className="checkInContainer">
+          <Grid>
+          <Grid.Column width={1}>
+            <Label as='a' size="massive" color='teal' ribbon='left'>History of Present Illness</Label>
+          </Grid.Column>
+          <Grid.Column className="marginTop5" width={14}>
           <h4>{`Please answer a few questions about your ${this.props.encounter.hx.hpi.cc[0]}`}</h4>
           <Form onSubmit={this.submitHPI}>
-            {hpiJSX}
-            <Form.Button>Submit</Form.Button>
+            <Grid>
+              <Grid.Row>
+                {hpiJSX}
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={6}>
+                </Grid.Column>
+                <Grid.Column stretched width={4}>
+                  <Button>Submit</Button>
+                </Grid.Column>
+                <Grid.Column width={6}>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
           </Form>
+          </Grid.Column>
+          <Grid.Column width={1}>
+          </Grid.Column>
+          </Grid>
         </Grid.Column>
         <Grid.Column width={2}>
         </Grid.Column>
