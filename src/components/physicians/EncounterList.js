@@ -22,7 +22,7 @@ class EncounterList extends Component {
       .map(encounter => <Encounter key={encounter.id} {...encounter} />)
 
     return (
-      <List celled>
+      <List celled className="scrollablePtList">
         {encountersList}
       </List>
     )

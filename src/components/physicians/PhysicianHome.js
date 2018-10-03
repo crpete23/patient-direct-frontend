@@ -23,7 +23,8 @@ export class PhysicianHome extends Component {
 
   render(){
     return (
-      <Grid id='bodyGrid'>
+      <Grid id='physicianHomeBodyGrid'>
+        <div className='bg'></div>
         <Grid.Row>
           <Grid.Column width={1}>
           </Grid.Column>
@@ -32,7 +33,7 @@ export class PhysicianHome extends Component {
           </Grid.Column>
           <Grid.Column width={1}>
           </Grid.Column>
-          <Grid.Column width={8}>
+          <Grid.Column className="physicianHomeWhiteContainer" width={8} >
             <Grid.Row className={"listHeader"}>
               <h1>Patient List</h1>
             </Grid.Row>
@@ -47,12 +48,10 @@ export class PhysicianHome extends Component {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row centered>
-          <Grid.Column width={8}>
+          <Grid.Column width={8} >
             {
               (this.props.encounters.selected_encounter.id ?
-                <Segment>
                   <SelectedEncounter {...this.props.encounters.selected_encounter} />
-                </Segment>
                 : null)
             }
           </Grid.Column>

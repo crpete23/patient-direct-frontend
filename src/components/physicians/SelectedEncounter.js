@@ -10,7 +10,7 @@ const SelectedEncounter = ({id, date, dob, first_name, last_name, sex, time, hx 
 }
 
   return (
-    <Grid padded>
+    <Grid padded className='physicianHomeWhiteContainer'>
       <Grid.Row centered>
         <h1>{`${upperCase(first_name)} ${upperCase(last_name)}`}</h1>
       </Grid.Row>

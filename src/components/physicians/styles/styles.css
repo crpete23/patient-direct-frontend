@@ -1,5 +1,35 @@
-#bodyGrid {
-  margin-top: 5%;
+
+#physicianHomeBodyGrid {
+  padding-top: 5%;
+  z-index: 1;
+}
+
+.bg {
+  background-image: url('../../../images/loginBackground2.jpg');
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  opacity: .5;
+  height: 100%;
+  width: 100%;
+  background-size: 100% 100%;
+}
+
+.calendarContainer {
+  box-shadow: 0 0 5px 3px #555;
+}
+
+.physicianHomeWhiteContainer {
+  background-color: #FEFEFE;
+  box-shadow: 0 0 5px 3px #555;
+  opacity: 0.95;
+}
+
+.scrollablePtList {
+    height: 255px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .selectedEncounter {
@@ -9,7 +39,7 @@
 
 .listHeader{
   padding-bottom: 20px;
-  }
+}
 
 .listHeader2{
   padding-bottom: 10px;

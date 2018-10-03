@@ -216,7 +216,7 @@ export class HpiTemplateForm extends Component {
       })
 
     return(
-      <Segment>
+      <div className="updateTempWhiteContainer">
         <h2>{this.upperCase(this.props.temp)}</h2>
         { this.props.temp==='new' ?
         <Form>
@@ -238,7 +238,7 @@ export class HpiTemplateForm extends Component {
         <List celled>
           { updateTemplate }
         </List>
-      </Segment>
+      </div>
 
     )
   }

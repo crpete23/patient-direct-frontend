@@ -35,12 +35,9 @@ const TemplateList = ({hpiTemps, selectTemplate, userId, current, deselect }) =>
   );
 
   return (
-    <Segment>
-      <h2>Select Template to Edit</h2>
-      <List celled>
+      <List celled className="scrollableTempList">
         {templatesList}
       </List>
-    </Segment>
   )
 }
 

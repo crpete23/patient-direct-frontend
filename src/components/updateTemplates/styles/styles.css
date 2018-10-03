@@ -1,8 +1,43 @@
-#bodyGrid {
-  margin-top: 5%;
+
+#updateTempBodyGrid {
+  padding-top: 5%;
+  z-index: 1;
+}
+
+.bg {
+  background-image: url('../../../images/loginBackground2.jpg');
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  opacity: .5;
+  height: 100%;
+  width: 100%;
+  background-size: 100% 100%;
 }
 
 .selectedTemplate {
   background: #efefef;
   box-shadow: 0 0 5px 1px #555;
+}
+
+.tempListContainer {
+  background-color: #FEFEFE;
+  box-shadow: 0 0 5px 3px #555;
+  height: 250px;
+  padding-top: 1%;
+}
+
+.updateTempWhiteContainer {
+  background-color: #FEFEFE;
+  box-shadow: 0 0 5px 3px #555;
+  opacity: 0.95;
+  padding-left: 3%;
+  padding-top: 3%;
+}
+
+.scrollableTempList {
+  height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

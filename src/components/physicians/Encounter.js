@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 
-const Encounter = ({id, date, dob, first_name, last_name, sex, time, getEncounterById, checkedIn, selected }) => {
+const Encounter = ({id, date, dob, first_name, last_name, sex, time, getEncounterById, checkedIn, selected, patient_id }) => {
   const dateOfBirth = `${dob.slice(5)}/${dob.slice(0,4)}`
 
-  const isSelected = selected===id ? 'selectedEncounter' : '';
+  const isSelected = selected===patient_id ? 'selectedEncounter' : '';
 
   function upperCase (string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -20,7 +20,7 @@ const Encounter = ({id, date, dob, first_name, last_name, sex, time, getEncounte
       <List.Header>{time}</List.Header>
       <Grid>
         <Grid.Column width={2}>
-          {checkedIn? <Label color='green'>Checked In</Label>: <Label color='grey'>Not Arrived</Label> }
+          {checkedIn? <Label color='green' size='small'>Checked In</Label>: <Label color='grey'size='small'>Not Arrived</Label> }
         </Grid.Column>
         <Grid.Column width={14}>
           {`Patient: ${upperCase(first_name)} ${upperCase(last_name)}, Sex: ${upperCase(sex)}, Date of Birth: ${dateOfBirth}`}

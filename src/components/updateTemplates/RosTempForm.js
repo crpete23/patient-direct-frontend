@@ -75,7 +75,7 @@ export class RosTempForm extends Component {
     })
 
     return(
-      <Segment>
+      <div className="updateTempWhiteContainer">
         <h2>Review of Systems Template</h2>
         <Button content={'Submit Changes'} onClick={this.submitChange}/>
         { this.state.success ?   <Message positive>
@@ -84,7 +84,7 @@ export class RosTempForm extends Component {
         <List celled>
           { updateTemplate }
         </List>
-      </Segment>
+      </div>
     )
   }
 }

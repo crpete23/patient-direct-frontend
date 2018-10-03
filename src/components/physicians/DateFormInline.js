@@ -21,7 +21,7 @@ class DateFormInline extends React.Component {
 
   render() {
     return (
-      <Form>
+      <Form className="calendarContainer">
         <DateInput
           inline
           name="date"
