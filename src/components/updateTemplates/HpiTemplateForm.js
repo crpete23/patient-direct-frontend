@@ -187,7 +187,7 @@ export class HpiTemplateForm extends Component {
                   {this.state.template[element].choices.map((choice, i)=>{
                     return (
                       <List.Item key={choice}>
-                        {this.upperCase(choice)} <a onClick={()=>{ this.state.template[element].choices.splice(i,1);
+                        {this.upperCase(choice)} <a className="removeButtons" onClick={()=>{ this.state.template[element].choices.splice(i,1);
                           this.setState({
                           ...this.state
                         })

@@ -41,3 +41,11 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+.deleteButtons {
+  padding-left: 3%;
+}
+
+.deleteButtons {
+  padding-left: 1%;
+}

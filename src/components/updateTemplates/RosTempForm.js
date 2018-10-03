@@ -47,7 +47,7 @@ export class RosTempForm extends Component {
           <List>
             {
               Object.keys(this.state.template[system]).map(symptom => {
-                return (<List.Item key={symptom}>{this.upperCase(symptom)}<a onClick={() => {
+                return (<List.Item key={symptom}>{this.upperCase(symptom)}<a className="removeButtons" onClick={() => {
                     delete this.state.template[system][symptom]
                     this.setState({
                       ...this.state

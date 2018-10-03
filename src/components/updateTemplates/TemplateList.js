@@ -18,7 +18,7 @@ const TemplateList = ({hpiTemps, selectTemplate, userId, current, deselect }) =>
   hpiTemps.forEach(temp => {
     templatesList.push(
       <List.Item className={current===temp? 'selectedTemplate': null} key={templatesList.length} onClick={()=>selectTemplate(temp)}> {upperCase(temp)}
-          <a onClick={async()=>{
+          <a className="deleteButtons" onClick={async()=>{
             await tempModels.deleteHpiTemplate(userId, temp)
             deselect()
           }}>Delete</a>
