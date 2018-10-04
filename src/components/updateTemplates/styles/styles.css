@@ -23,14 +23,14 @@
 
 .tempListContainer {
   background-color: #FEFEFE;
-  box-shadow: 0 0 5px 3px #555;
+  box-shadow: 0 0 5px 1px #555;
   height: 250px;
   padding-top: 1%;
 }
 
 .updateTempWhiteContainer {
   background-color: #FEFEFE;
-  box-shadow: 0 0 5px 3px #555;
+  box-shadow: 0 0 5px 1px #555;
   opacity: 0.95;
   padding-left: 3%;
   padding-top: 3%;
