@@ -1,5 +1,5 @@
 import axios from 'axios'
-const BASE_URL = 'http://localhost:3200/api/users'
+const BASE_URL = 'https://patient-direct-backend.herokuapp.com/api/users'
 
 function login(body){
   return axios.post(`${BASE_URL}/login`, body)

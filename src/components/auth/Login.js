@@ -62,10 +62,10 @@ export class Login extends Component {
              <Grid.Column width={3}></Grid.Column>
             </Grid>
           </Segment>
-          </Form>
           {this.props.auth.showLoginError ? <Segment color='red' align='center'>
           Incorrect Username or Password
           </Segment> : null }
+          </Form>
         </Grid.Column>
       </Grid>
     )

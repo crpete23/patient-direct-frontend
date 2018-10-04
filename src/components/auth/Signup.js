@@ -11,7 +11,8 @@ export class Signup extends Component {
     lastName: '',
     email: '',
     password: '',
-    verify_password: ''
+    verify_password: '',
+    signupError: []
   }
 
   onChange = (e) => {
@@ -24,6 +25,22 @@ export class Signup extends Component {
 
   signup = async (e) => {
     e.preventDefault()
+    let signupErrorArr = []
+    if(this.state.password!==this.state.verify_password){
+      signupErrorArr.push('Passwords do not match')
+    }
+    if(!this.state.firstName || !this.state.lastName || !this.state.email || !this.state.password || !this.state.verify_password){
+      signupErrorArr.push('Missing user information')
+    }
+    if(signupErrorArr.length){
+      this.setState({
+        ...this.state,
+        password: '',
+        verify_password: '',
+        signupError: signupErrorArr
+      })
+      return
+    }
     const newUser = {
       doc_first_name : this.state.firstName,
       doc_last_name : this.state.lastName,
@@ -84,10 +101,15 @@ export class Signup extends Component {
                <Grid.Column width={3}></Grid.Column>
               </Grid>
             </Segment>
-            </Form>
+            {this.state.signupError.length ? <Segment color='red' align='center'>{this.state.signupError.map((e,i)=>{
+              if(i>0){
+                return `, ${e}`
+              } else return e
+            })}</Segment> : null }
             {this.props.auth.showSignupError ? <Segment color='red' align='center'>
             Unable to Register User
             </Segment> : null }
+            </Form>
           </Grid.Column>
         </Grid>
       )
