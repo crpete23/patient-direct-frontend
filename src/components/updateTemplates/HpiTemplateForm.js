@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Segment, List, Message } from 'semantic-ui-react'
+import { Button, Form, Segment, List, Message, Label } from 'semantic-ui-react'
 
 import tempModels from '../../models/templates.js'
 
@@ -165,9 +165,9 @@ export class HpiTemplateForm extends Component {
             <List.Item key={element}>
               <h3>{this.upperCase(element)}</h3>
               <List.Content>
+                <label><b><u>Label</u></b></label>
                 <Form>
                   <Form.Field>
-                    <label>Label</label>
                     <input value={this.state.template[element].label} onChange={((e)=>{
                       this.setState({
                         ...this.state,
@@ -183,7 +183,7 @@ export class HpiTemplateForm extends Component {
                   </Form.Field>
                 </Form>
                 <List>
-                  <h5>Choices</h5>
+                  <label><b><u>Choices</u></b></label>
                   {this.state.template[element].choices.map((choice, i)=>{
                     return (
                       <List.Item key={choice}>

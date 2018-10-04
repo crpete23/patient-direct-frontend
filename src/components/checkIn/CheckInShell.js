@@ -72,7 +72,7 @@ export class CheckInShell extends Component {
   render() {
     return (
       <Grid centered id='checkInBodyGrid'>
-        <div className="bg"></div>
+        <div className="checkinBg"></div>
         <Grid.Row>
           {
             this.state.page[this.state.pageNum]

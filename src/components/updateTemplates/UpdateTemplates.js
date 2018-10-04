@@ -57,12 +57,10 @@ export class UpdateTemplates extends Component {
             <h2>Select Template to Edit</h2>
             <TemplateList hpiTemps={this.state.hpiTempOptions} selectTemplate={this.selectTemplate} userId={this.props.user.userId} current={this.state.selected} deselect={this.deselect} />
           </Grid.Column>
-          <Grid.Column width={1}>
-          </Grid.Column>
           <Grid.Column width={8}>
             {this.state.selected ? < HelperTempForm temp={this.state.selected} userId={this.props.user.userId} selectTemplate={this.selectTemplate} /> : null }
           </Grid.Column>
-          <Grid.Column width={1}>
+          <Grid.Column width={2}>
           </Grid.Column>
         </Grid.Row>
       </Grid>

@@ -35,7 +35,7 @@ const Ros = (ros) => {
   }
 
   return (
-    <List>
+    <List celled>
       {rosList}
     </List>
   )

@@ -26,14 +26,12 @@ export class PhysicianHome extends Component {
       <Grid id='physicianHomeBodyGrid'>
         <div className='bg'></div>
         <Grid.Row>
-          <Grid.Column width={1}>
+          <Grid.Column width={2}>
           </Grid.Column>
           <Grid.Column width={5}>
           <DateFormInline changedDate={this.changedDate} />
           </Grid.Column>
-          <Grid.Column width={1}>
-          </Grid.Column>
-          <Grid.Column className="physicianHomeWhiteContainer" width={8} >
+          <Grid.Column className="physicianHomeWhiteContainer" width={7} >
             <Grid.Row className={"listHeader"}>
               <h1>Patient List</h1>
             </Grid.Row>
@@ -44,7 +42,7 @@ export class PhysicianHome extends Component {
               <EncounterList date={this.state.selectedDate} />
             </Grid.Row>
           </Grid.Column>
-          <Grid.Column width={1}>
+          <Grid.Column width={2}>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row centered>

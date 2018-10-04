@@ -30,7 +30,7 @@ const Hpi = (hpi) => {
   }
 
   return (
-    <List>
+    <List celled>
       {historyList}
     </List>
   )
