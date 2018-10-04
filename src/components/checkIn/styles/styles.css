@@ -18,12 +18,12 @@
 
 .checkInContainer {
   background-color: #F7F7F7;
-  box-shadow: 0 0 5px 3px #555;
+  box-shadow: 0 0 5px 1px #E1E0E0;
   opacity: .95;
 }
 
 .centerHeader {
-  text-align: center;
+  vertical-align:middle;
 }
 
 .questionnaireSegment {
@@ -34,12 +34,28 @@
   margin-top: 5%;
 }
 
+#hpiSubmitButton {
+  box-shadow: 0 0 5px 1px #555;
+}
+
+#rosSubmitButton {
+  box-shadow: 0 0 5px 1px #555;
+}
+
+#finishedButton {
+  box-shadow: 0 0 5px 1px #555;
+}
+
 #backCheckInButton {
   background-color: #D2D2D2;
-  box-shadow: -3px 1px 5px 3px #555;
+  box-shadow: -1px 0px 5px 1px #555;
 }
 
 #nextCheckInButton {
   background-color: #D2D2D2;
-  box-shadow: 3px 1px 5px 3px #555;
+  box-shadow: 1px 0px 5px 1px #555;
+}
+
+#ccSubmit {
+  box-shadow: 0 0 5px 1px #555;
 }

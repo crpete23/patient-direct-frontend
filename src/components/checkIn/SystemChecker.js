@@ -60,7 +60,7 @@ class SystemChecker extends Component {
     })
 
     return (
-      <Segment>
+      <Segment className="questionnaireSegment">
         <label><b>{this.props.system}</b></label>
         { optionsJSX }
       </Segment>

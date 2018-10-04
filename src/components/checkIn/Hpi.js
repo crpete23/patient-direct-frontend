@@ -101,7 +101,7 @@ class Hpi extends Component {
         <Grid.Column width={12} className="checkInContainer">
           <Grid>
           <Grid.Column width={1}>
-            <Label as='a' size="massive" color='teal' ribbon='left'>History of Present Illness</Label>
+            <Label as='a' size="massive" color='teal' ribbon >History of Present Illness</Label>
           </Grid.Column>
           <Grid.Column className="marginTop5" width={14}>
           <h4>{`Please answer a few questions about your ${this.props.encounter.hx.hpi.cc[0]}`}</h4>
@@ -114,7 +114,7 @@ class Hpi extends Component {
                 <Grid.Column width={6}>
                 </Grid.Column>
                 <Grid.Column stretched width={4}>
-                  <Button>Submit</Button>
+                  <Button id="hpiSubmitButton">Submit</Button>
                 </Grid.Column>
                 <Grid.Column width={6}>
                 </Grid.Column>

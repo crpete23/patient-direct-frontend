@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Form } from 'semantic-ui-react'
+import { Grid, Form, Label, Button } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
@@ -63,12 +63,32 @@ class ReviewOfSystems extends Component {
         <Grid.Column width={2}>
         </Grid.Column>
         <Grid.Column width={12} className="checkInContainer">
-          <h2>Review of Systems</h2>
-          <h4>Please select all that apply</h4>
-          <Form onSubmit={this.submitROS}>
-            {rosJSX}
-            <Form.Button>Submit</Form.Button>
-          </Form>
+          <Grid>
+            <Grid.Column width={1}>
+              <Label as='a' size="massive" color='teal' ribbon='left'>Review of Systems</Label>
+            </Grid.Column>
+            <Grid.Column className="marginTop5" width={14}>
+            <h4>Please select all that apply</h4>
+            <Form onSubmit={this.submitROS}>
+              <Grid>
+                <Grid.Row>
+                  {rosJSX}
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column width={6}>
+                  </Grid.Column>
+                  <Grid.Column stretched width={4}>
+                    <Button id="rosSubmitButton">Submit</Button>
+                  </Grid.Column>
+                  <Grid.Column width={6}>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+             </Form>
+            </Grid.Column>
+            <Grid.Column width={1}>
+            </Grid.Column>
+          </Grid>
         </Grid.Column>
         <Grid.Column width={2}>
         </Grid.Column>
