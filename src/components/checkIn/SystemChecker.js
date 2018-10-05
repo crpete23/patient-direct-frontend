@@ -1,11 +1,29 @@
 import React, { Component } from 'react'
-import { Form, Segment } from 'semantic-ui-react'
+import { Form, Segment, Button } from 'semantic-ui-react'
 
 class SystemChecker extends Component {
   state =
   {
     [this.props.system] : {
     }
+  }
+
+  allNegative = () => {
+    const system = this.props.system
+    let updatedSystem = {
+      ...this.state[system]
+    }
+
+    this.props.symptoms.forEach(symptom => {
+      updatedSystem[symptom] = false;
+    })
+
+    this.props.passChange(system, updatedSystem)
+
+    this.setState({
+      ...this.state,
+      [system] : updatedSystem
+    })
   }
 
   handleChange = (e, { name, value }) => {
@@ -61,8 +79,11 @@ class SystemChecker extends Component {
 
     return (
       <Segment className="questionnaireSegment">
-        <label><b>{this.props.system}</b></label>
+        <div className="marginBottom5p">
+          <label className="systemLabel">{this.props.system}</label>
+        </div>
         { optionsJSX }
+        <Button onClick={()=>this.allNegative()}size='mini' color='red' basic>None of the above</Button>
       </Segment>
     )
   }

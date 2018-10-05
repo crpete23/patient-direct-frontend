@@ -54,7 +54,7 @@ class ReviewOfSystems extends Component {
     const keyArr = Object.keys(this.state.template)
     let rosJSX = keyArr.map(system => {
       return (
-        <SystemChecker key={system} system={system} options={this.state.template[system]} passChange={this.passChange}/>
+        <SystemChecker key={system} system={system} symptoms={Object.keys(this.state.template[system])} options={this.state.template[system]} passChange={this.passChange}/>
       )
     })
 

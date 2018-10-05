@@ -34,6 +34,16 @@
   margin-top: 5%;
 }
 
+.systemLabel {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.marginBottom5p {
+  margin-bottom: 5px;
+}
+
 #hpiSubmitButton {
   box-shadow: 0 0 5px 1px #555;
 }
