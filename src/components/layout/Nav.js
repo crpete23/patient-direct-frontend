@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userLogout } from '../../actions/auth.actions'
 import { checkinComplete } from '../../actions/patients'
-import logo from '../../logo.svg';
+import logo from '../../patientDirect_logo.svg';
 import './styles/styles.css';
 
 const Nav = (props) => {

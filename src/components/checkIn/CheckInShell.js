@@ -73,12 +73,12 @@ export class CheckInShell extends Component {
     return (
       <Grid centered id='checkInBodyGrid'>
         <div className="checkinBg"></div>
-        <Grid.Row>
+        <Grid.Row className='zindex2'>
           {
             this.state.page[this.state.pageNum]
           }
         </Grid.Row>
-        <Grid.Row>
+        <Grid.Row className="zindex1">
           <Grid.Column width={12}>
           </Grid.Column>
           <Grid.Column width={4}>

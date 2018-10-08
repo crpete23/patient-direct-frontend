@@ -4,4 +4,5 @@
   background-image: url('../../../images/loginBackground.jpg');
   min-height: 95vh;
   background-size: 100% 100%;
+  z-index: -99;
 }
