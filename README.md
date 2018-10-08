@@ -43,9 +43,9 @@ Full-stack progressive web application seeking to ease the check in process and 
     -the previous step will open the frontend program in your browser using React-scripts, connected to the backend deployed with Heroku
 
 
-### TO USE PatientDirect ONLINE (Will be available shortly)
+### TO USE PatientDirect ONLINE
 
-<a href="">PatientDirect</a>
+<a href="https://patient-direct.herokuapp.com/">PatientDirect</a>
 
 ### BUILT WITH
 
