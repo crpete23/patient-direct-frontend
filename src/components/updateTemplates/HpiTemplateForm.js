@@ -97,7 +97,7 @@ export class HpiTemplateForm extends Component {
     } else {
       this.setState({
         ...this.state,
-        template: blankTemp,
+        template: JSON.parse(JSON.stringify(blankTemp)),
         success: false,
         cc: ''
       })
@@ -117,7 +117,7 @@ export class HpiTemplateForm extends Component {
       } else {
         this.setState({
           ...this.state,
-          template: blankTemp,
+          template: JSON.parse(JSON.stringify(blankTemp)),
           success: false,
           cc: ''
         })
@@ -135,7 +135,7 @@ export class HpiTemplateForm extends Component {
 
     submitChange = async () => {
 
-      if(this.props.temp!=='ros' && this.props.temp!=='new'){
+      if(this.props.temp!=='new'){
         await tempModels.updateHpiTemplate(this.props.userId, this.props.temp, {template: this.state.template})
         this.setState({
           ...this.state,
