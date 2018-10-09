@@ -3,13 +3,23 @@
   "name": "Patient Direct",
   "icons": [
     {
-      "src": "patientDirect_logo.png",
-      "sizes": "144x144 64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "patientDirect_logo144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "patientDirect_logo64.png",
+      "sizes": "64x64",
+      "type": "image/png"
     }
   ],
   "start_url": "./index.html",
+  "scope": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#d1d8ff",
+  "background_color": "#ffffff",
+  "description": "Get subjective history straight from the source",
+  "dir": "ltr",
+  "lang": "en-US",
+  "orientation": "landscape-primary"
 }
