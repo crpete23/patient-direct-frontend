@@ -1,3 +1,30 @@
+.fontSize140 {
+  font-size: 140%;
+}
+
+h1 {
+  font-size: 180% !important;
+}
+
+h2 {
+  font-size: 160% !important;
+}
+
+h3 {
+  font-size: 130% !important;
+}
+
+h4 {
+  font-size: 120% !important;
+}
+
+label {
+  font-size: 110% !important;
+}
+
+.item {
+  font-size: 110% !important;
+}
 
 #physicianHomeBodyGrid {
   padding-top: 5%;
@@ -5,7 +32,7 @@
 }
 
 .bg {
-  background-image: url('../../../images/loginBackground2.jpg');
+  background-image: url('../../../images/doctorHomeBackground.jpg');
   position: fixed;
   z-index: -99;
   top: 0;

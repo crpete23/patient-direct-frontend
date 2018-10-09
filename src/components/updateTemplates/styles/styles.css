@@ -5,7 +5,7 @@
 }
 
 .bg {
-  background-image: url('../../../images/loginBackground2.jpg');
+  background-image: url('../../../images/doctorHomeBackground.jpg');
   position: fixed;
   z-index: -99;
   top: 0;

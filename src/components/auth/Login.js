@@ -39,7 +39,7 @@ export class Login extends Component {
 
   render(){
     return (
-      <Grid centered id='loginBodyGrid'>
+      <Grid centered id='loginBodyGrid' className='fontSize140'>
         <Grid.Column stretched width={3}>
           <Form onSubmit={this.loginAttempt}>
             <Segment>

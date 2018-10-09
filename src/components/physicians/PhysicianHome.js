@@ -23,7 +23,7 @@ export class PhysicianHome extends Component {
 
   render(){
     return (
-      <Grid id='physicianHomeBodyGrid'>
+      <Grid id='physicianHomeBodyGrid' className="fontSize140">
         <div className='bg'></div>
         <Grid.Row>
           <Grid.Column width={2}>
