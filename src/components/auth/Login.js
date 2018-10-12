@@ -8,8 +8,8 @@ import './styles/styles.css';
 
 export class Login extends Component {
   state = {
-    email: 'ss@ss.com',
-    password: 'ss'
+    email: '',
+    password: ''
   }
 
   onChange = (e) => {
