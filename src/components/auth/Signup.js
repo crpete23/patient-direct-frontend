@@ -64,7 +64,7 @@ export class Signup extends Component {
   render(){
     return (
         <Grid centered id='loginBodyGrid'>
-          <Grid.Column stretched width={3}>
+          <Grid.Column stretched computer={3} mobile={14}>
             <Form onSubmit={this.signup}>
               <Segment>
                 <Label as='a' size='massive' color='teal' ribbon='right'>

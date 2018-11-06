@@ -40,7 +40,7 @@ export class Login extends Component {
   render(){
     return (
       <Grid centered id='loginBodyGrid' className='fontSize140'>
-        <Grid.Column stretched width={3}>
+        <Grid.Column stretched computer={3} mobile={14}>
           <Form onSubmit={this.loginAttempt}>
             <Segment>
               <Label as='a' size='massive' color='teal' ribbon='right'>

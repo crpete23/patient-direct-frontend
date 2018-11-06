@@ -33,7 +33,7 @@ export class PatientHome extends Component {
   render(){
     return (
       <Grid centered id='patientHomeBodyGrid'>
-        <Grid.Column stretched width={3}>
+        <Grid.Column stretched computer={3} mobile={14}>
           <Form onSubmit={this.checkInAttempt}>
             <Segment>
               <Label as='a' size='massive' color='teal' ribbon='right'>
