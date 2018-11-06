@@ -46,11 +46,13 @@ export class PhysicianHome extends Component {
               <EncounterList date={this.state.selectedDate} />
             </Grid.Row>
           </Grid.Column>
-          <Grid.Column width={2}>
+          <Grid.Column width={1}>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row centered only="mobile">
-          <Grid.Column width={16} >
+          <Grid.Column width={1}>
+          </Grid.Column>
+          <Grid.Column width={15} >
             {
               (this.props.encounters.selected_encounter.id ?
                   <SelectedEncounter {...this.props.encounters.selected_encounter} />
