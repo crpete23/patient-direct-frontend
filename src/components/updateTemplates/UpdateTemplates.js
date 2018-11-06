@@ -50,7 +50,7 @@ export class UpdateTemplates extends Component {
     return (
       <Grid id='updateTempBodyGrid'>
         <div className="bg"></div>
-        <Grid.Row>
+        <Grid.Row only="computer tablet">
           <Grid.Column width={2}>
           </Grid.Column>
           <Grid.Column width={4} className="tempListContainer">
@@ -58,6 +58,24 @@ export class UpdateTemplates extends Component {
             <TemplateList hpiTemps={this.state.hpiTempOptions} selectTemplate={this.selectTemplate} userId={this.props.user.userId} current={this.state.selected} deselect={this.deselect} />
           </Grid.Column>
           <Grid.Column width={8}>
+            {this.state.selected ? < HelperTempForm temp={this.state.selected} userId={this.props.user.userId} selectTemplate={this.selectTemplate} /> : null }
+          </Grid.Column>
+          <Grid.Column width={2}>
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row only="mobile">
+          <Grid.Column width={2}>
+          </Grid.Column>
+          <Grid.Column width={14} className="tempListContainer">
+            <h2>Select Template to Edit</h2>
+            <TemplateList hpiTemps={this.state.hpiTempOptions} selectTemplate={this.selectTemplate} userId={this.props.user.userId} current={this.state.selected} deselect={this.deselect} />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row only="mobile">
+          <Grid.Column width={2}>
+          </Grid.Column>
+          <Grid.Column width={14}>
             {this.state.selected ? < HelperTempForm temp={this.state.selected} userId={this.props.user.userId} selectTemplate={this.selectTemplate} /> : null }
           </Grid.Column>
           <Grid.Column width={2}>

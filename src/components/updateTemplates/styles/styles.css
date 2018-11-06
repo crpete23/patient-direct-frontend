@@ -2,6 +2,7 @@
 #updateTempBodyGrid {
   padding-top: 5%;
   z-index: 1;
+  width: 100%;
 }
 
 .bg {
