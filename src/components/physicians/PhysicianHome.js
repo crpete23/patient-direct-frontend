@@ -25,13 +25,17 @@ export class PhysicianHome extends Component {
     return (
       <Grid id='physicianHomeBodyGrid' className="fontSize140">
         <div className='bg'></div>
-        <Grid.Row>
-          <Grid.Column width={2}>
+        <Grid.Row only="mobile">
+          <Grid.Column width={1}>
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column width={14}>
           <DateFormInline changedDate={this.changedDate} />
           </Grid.Column>
-          <Grid.Column className="physicianHomeWhiteContainer" width={7} >
+        </Grid.Row>
+        <Grid.Row only="mobile">
+          <Grid.Column width={1}>
+          </Grid.Column>
+          <Grid.Column className="physicianHomeWhiteContainer" width={14} >
             <Grid.Row className={"listHeader"}>
               <h1>Patient List</h1>
             </Grid.Row>
@@ -45,7 +49,37 @@ export class PhysicianHome extends Component {
           <Grid.Column width={2}>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row centered>
+        <Grid.Row centered only="mobile">
+          <Grid.Column width={16} >
+            {
+              (this.props.encounters.selected_encounter.id ?
+                  <SelectedEncounter {...this.props.encounters.selected_encounter} />
+                : null)
+            }
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row only="tablet computer">
+          <Grid.Column width={2}>
+          </Grid.Column>
+          <Grid.Column width={5}>
+          <DateFormInline changedDate={this.changedDate} />
+          </Grid.Column>
+          <Grid.Column className="physicianHomeWhiteContainer" width={7}>
+            <Grid.Row className={"listHeader"}>
+              <h1>Patient List</h1>
+            </Grid.Row>
+            <Grid.Row className={"listHeader2"}>
+              <h3>{this.state.selectedDate}</h3>
+            </Grid.Row>
+            <Grid.Row>
+              <EncounterList date={this.state.selectedDate} />
+            </Grid.Row>
+          </Grid.Column>
+          <Grid.Column width={2}>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row centered only="tablet computer">
           <Grid.Column width={8} >
             {
               (this.props.encounters.selected_encounter.id ?

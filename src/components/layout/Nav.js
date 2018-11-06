@@ -24,7 +24,7 @@ const Nav = (props) => {
   }
 
   return (
-    <Menu id="navBar">
+    <Menu id="navBar" stackable>
       <Menu.Menu>
         <Menu.Item onClick={async() => {
           if(checkInEncounterId){

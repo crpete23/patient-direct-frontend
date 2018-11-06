@@ -19,10 +19,10 @@ const Encounter = ({id, date, dob, first_name, last_name, sex, time, getEncounte
      <List.Content>
       <List.Header>{time}</List.Header>
       <Grid>
-        <Grid.Column width={2}>
+        <Grid.Column computer={2} mobile={4}>
           {checkedIn? <Label color='green' size='small'>Checked In</Label>: <Label color='grey'size='small'>Not Arrived</Label> }
         </Grid.Column>
-        <Grid.Column width={14}>
+        <Grid.Column computer={14} mobile={12}>
           {`Patient: ${upperCase(first_name)} ${upperCase(last_name)}, Sex: ${upperCase(sex)}, Date of Birth: ${dateOfBirth}`}
         </Grid.Column>
       </Grid>
