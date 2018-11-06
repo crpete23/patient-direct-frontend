@@ -59,10 +59,10 @@ export class PatientHome extends Component {
              <Grid.Column width={3}></Grid.Column>
             </Grid>
           </Segment>
-          </Form>
           {this.props.patients.checkInError ? <Segment color='red' align='center'>
           Either user information was input incorrectly or we do not have a scheduled appointment for you today. We apologize for the confusion. Please speak to the front desk.
         </Segment> : null }
+          </Form>
         </Grid.Column>
       </Grid>
     );
